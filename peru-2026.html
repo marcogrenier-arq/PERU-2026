@@ -1,0 +1,2975 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a1410">
+<title>Peru 2026 · Marco & Gilberto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --ink-soft: #2a2118;
+    --card: #221a13;
+    --card-hi: #2c2219;
+    --gold: #c9a227;
+    --gold-soft: #d4b95e;
+    --gold-dim: rgba(201,162,39,0.18);
+    --cream: #f0e9dd;
+    --cream-dim: #b8ad9c;
+    --muted: #8a8073;
+    --terra: #c2603a;
+    --terra-dim: rgba(194,96,58,0.15);
+    --sage: #7d8b6a;
+    --sage-dim: rgba(125,139,106,0.15);
+    --blue: #6a8caf;
+    --line: rgba(201,162,39,0.16);
+    --line-soft: rgba(240,233,221,0.08);
+    --radius: 14px;
+    --radius-sm: 9px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--gold-dim); color: var(--cream); }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 56px 22px 40px;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,162,39,0.10), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 90%, rgba(194,96,58,0.08), transparent 60%),
+      linear-gradient(170deg, #2a1d12 0%, #1a1410 55%, #14100b 100%);
+  }
+  .hero-eyebrow {
+    font-size: 10.5px; letter-spacing: 4.5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 22px; font-weight: 500;
+    opacity: 0; animation: fade 0.9s ease 0.2s forwards;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(60px, 17vw, 128px); line-height: 0.92;
+    letter-spacing: -2px; color: var(--cream);
+    opacity: 0; animation: fade 0.9s ease 0.4s forwards;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-soft); }
+  .hero-sub {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
+    font-size: clamp(15px, 4vw, 21px); color: var(--cream-dim);
+    margin-top: 18px; letter-spacing: 0.3px;
+    opacity: 0; animation: fade 0.9s ease 0.6s forwards;
+  }
+  .hero-flight {
+    margin-top: 40px; display: flex; align-items: stretch; gap: 0;
+    background: rgba(34,26,19,0.6); border: 1px solid var(--line);
+    border-radius: var(--radius); overflow: hidden; max-width: 380px; width: 100%;
+    opacity: 0; animation: fade 0.9s ease 0.8s forwards;
+  }
+  .hf-col { flex: 1; padding: 16px 12px; }
+  .hf-col.mid {
+    flex: 0 0 auto; display: flex; align-items: center; justify-content: center;
+    padding: 16px 14px; color: var(--gold); font-size: 16px;
+    background: rgba(201,162,39,0.05);
+  }
+  .hf-label { font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+  .hf-date { font-family: 'Fraunces', serif; font-size: 20px; color: var(--cream); line-height: 1; }
+  .hf-time { font-size: 11px; color: var(--cream-dim); margin-top: 4px; letter-spacing: 0.5px; }
+  .hf-city { font-size: 10px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 1px; }
+
+  .scroll-cue {
+    position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 7px;
+    color: var(--gold); font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+    opacity: 0; animation: fade 1s ease 1.3s forwards;
+  }
+  .scroll-bar { width: 1px; height: 34px; background: linear-gradient(var(--gold), transparent); animation: scrollpulse 2.2s ease-in-out infinite; }
+  @keyframes scrollpulse { 0%,100%{transform:scaleY(1);opacity:0.9} 50%{transform:scaleY(0.4);opacity:0.3} }
+  @keyframes fade { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(20,16,11,0.92); backdrop-filter: blur(16px) saturate(1.2);
+    border-bottom: 1px solid var(--line); padding: 0;
+    display: flex; align-items: stretch;
+  }
+  .nav-today-fixed {
+    flex: 0 0 auto; background: var(--gold); color: var(--ink); border: none; cursor: pointer;
+    font-family: 'Inter'; font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+    padding: 0 14px; white-space: nowrap; display: flex; align-items: center; gap: 5px;
+    transition: background 0.15s; border-right: 1px solid rgba(0,0,0,0.2);
+  }
+  .nav-today-fixed:hover { background: var(--gold-soft); }
+  .nav-today-fixed:active { transform: scale(0.97); }
+  .nav-scroll { flex: 1; overflow-x: auto; scrollbar-width: none; display: flex; }
+  .nav-scroll::-webkit-scrollbar { display: none; }
+  .nav-inner { display: flex; min-width: max-content; }
+  .nav a {
+    color: var(--cream-dim); text-decoration: none; font-size: 10.5px;
+    letter-spacing: 1.8px; text-transform: uppercase; padding: 15px 14px;
+    border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; white-space: nowrap;
+  }
+  .nav a:hover, .nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* ============ SECTION SHELL ============ */
+  section { max-width: 860px; margin: 0 auto; padding: 60px 20px; }
+  .eyebrow {
+    font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 14px; display: flex; align-items: center; gap: 12px; font-weight: 500;
+  }
+  .eyebrow::after { content:''; flex:1; height:1px; background: var(--line); }
+  .sec-title {
+    font-family: 'Fraunces', serif; font-weight: 300; line-height: 1.0;
+    font-size: clamp(34px, 8vw, 60px); color: var(--cream); letter-spacing: -1px;
+  }
+  .sec-title em { font-style: italic; color: var(--gold-soft); }
+  .sec-intro {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
+    font-size: clamp(16px, 3.6vw, 20px); color: var(--cream-dim); margin-top: 10px; line-height: 1.45;
+  }
+
+  /* ============ SUMMARY TABLE ============ */
+  .summary { background: var(--ink-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .sum-wrap { max-width: 860px; margin: 0 auto; padding: 52px 20px; }
+  .sum-list { display: flex; flex-direction: column; gap: 2px; margin-top: 26px; }
+  .sum-row {
+    display: grid; grid-template-columns: 58px 1fr auto; align-items: center; gap: 14px;
+    padding: 13px 16px; background: var(--card); border: 1px solid var(--line-soft);
+    border-radius: var(--radius-sm); text-decoration: none; color: inherit;
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
+  }
+  .sum-row:hover { border-color: var(--line); background: var(--card-hi); transform: translateX(3px); }
+  .sum-date { font-family: 'Fraunces', serif; font-size: 17px; color: var(--gold-soft); line-height: 1; }
+  .sum-date small { display: block; font-family: 'Inter'; font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; font-weight: 400; }
+  .sum-main { font-size: 14px; color: var(--cream); font-weight: 400; }
+  .sum-main span { display: block; font-size: 11.5px; color: var(--cream-dim); font-weight: 300; margin-top: 1px; }
+  .sum-sleep { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: right; }
+  .sum-sleep b { color: var(--sage); font-weight: 500; }
+  .sum-flag {
+    display: inline-block; font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--terra); border: 1px solid var(--terra-dim); background: var(--terra-dim);
+    padding: 1px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; font-weight: 500;
+  }
+
+  /* ============ MIND MAP ============ */
+  .mindmap { background: var(--ink); }
+  .mm-wrap { max-width: 860px; margin: 0 auto; padding: 60px 20px; }
+  .mm-stage {
+    margin-top: 32px; display: flex; flex-direction: column; gap: 0; position: relative;
+  }
+  .mm-leg {
+    position: relative; padding-left: 30px; padding-bottom: 26px;
+    border-left: 2px solid var(--line); margin-left: 10px;
+  }
+  .mm-leg:last-child { border-left-color: transparent; padding-bottom: 0; }
+  .mm-dot {
+    position: absolute; left: -9px; top: 2px; width: 16px; height: 16px;
+    border-radius: 50%; background: var(--ink); border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mm-dot::after { content:''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+  .mm-card {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 16px 18px; transition: border-color 0.2s, transform 0.2s, background 0.2s;
+  }
+  .mm-card:hover { border-color: var(--gold); background: var(--card-hi); transform: translateY(-2px); }
+  .mm-place { font-family: 'Fraunces', serif; font-size: 21px; color: var(--cream); line-height: 1.05; }
+  .mm-place em { font-style: italic; color: var(--gold-soft); }
+  .mm-days { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-top: 4px; }
+  .mm-desc { font-size: 12.5px; color: var(--cream-dim); margin-top: 8px; line-height: 1.5; }
+  .mm-logi { font-size: 11px; color: var(--muted); margin-top: 9px; display: flex; align-items: center; gap: 6px; }
+  .mm-logi b { color: var(--blue); font-weight: 500; }
+
+  /* ============ GENERIC PROSE ============ */
+  p.lead { font-size: 14.5px; color: var(--cream-dim); margin-top: 14px; line-height: 1.7; }
+  .anchor-pad { scroll-margin-top: 56px; }
+
+  /* ============ FOOTER ============ */
+  footer { text-align: center; padding: 50px 20px 60px; border-top: 1px solid var(--line); margin-top: 20px; }
+  .foot-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; color: var(--gold-soft); }
+  .foot-sub { font-size: 11px; color: var(--muted); margin-top: 8px; letter-spacing: 1px; }
+
+  /* ============ DAY CARDS ============ */
+  .day { background: var(--ink); border-top: 1px solid var(--line); }
+  .day:nth-of-type(even) { background: var(--ink-soft); }
+  .day-wrap { max-width: 860px; margin: 0 auto; padding: 56px 20px; }
+  .day-head { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 8px; }
+  .day-num {
+    flex: 0 0 auto; font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: 54px; line-height: 0.8; color: var(--gold-soft); letter-spacing: -2px;
+  }
+  .day-num small { display: block; font-family: 'Inter'; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 6px; font-weight: 500; }
+  .day-titles { flex: 1; padding-top: 4px; }
+  .day-kicker { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(28px, 7vw, 44px); line-height: 1.0; color: var(--cream); letter-spacing: -0.5px; margin-top: 4px; }
+  .day-kicker em { font-style: italic; color: var(--gold-soft); }
+  .day-title { font-size: 12px; letter-spacing: 0.3px; color: var(--cream-dim); font-weight: 300; margin-top: 6px; font-style: italic; font-family: 'Fraunces', serif; }
+  .day-sleep-tag {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+    font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--sage);
+    border: 1px solid var(--sage-dim); background: var(--sage-dim); padding: 3px 10px; border-radius: 20px;
+  }
+  .day-lead { font-size: 14px; color: var(--cream-dim); line-height: 1.65; margin: 18px 0 4px; }
+
+  /* hero image of card */
+  .day-img {
+    width: 100%; border-radius: var(--radius); margin: 22px 0;
+    border: 1px solid var(--line); display: block; aspect-ratio: 16/9; object-fit: cover;
+    background: linear-gradient(135deg, var(--card), var(--card-hi));
+  }
+  .img-ph {
+    width: 100%; aspect-ratio: 16/9; border-radius: var(--radius); margin: 22px 0;
+    border: 1px dashed var(--line); display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 6px; background: var(--card); text-align: center; padding: 16px;
+  }
+  .img-ph .ph-ico { font-size: 22px; opacity: 0.5; }
+  .img-ph .ph-txt { font-size: 11px; color: var(--muted); letter-spacing: 0.5px; }
+  .img-ph .ph-file { font-family: monospace; font-size: 10.5px; color: var(--gold); margin-top: 2px; }
+
+  /* stops within a day */
+  .stop {
+    background: var(--card); border: 1px solid var(--line-soft); border-radius: var(--radius);
+    margin: 14px 0; overflow: hidden;
+  }
+  .stop-main { padding: 18px 18px 4px; }
+  .stop-name { font-family: 'Fraunces', serif; font-size: 21px; color: var(--cream); line-height: 1.1; }
+  .stop-name em { font-style: italic; color: var(--gold-soft); }
+  .stop-why { font-size: 13px; color: var(--cream-dim); margin-top: 8px; line-height: 1.6; }
+  .stop-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+  .chip {
+    font-size: 10.5px; letter-spacing: 0.5px; color: var(--cream-dim);
+    background: rgba(240,233,221,0.05); border: 1px solid var(--line-soft);
+    padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px;
+  }
+  .chip b { color: var(--gold-soft); font-weight: 500; }
+  .chip.guide { color: var(--terra); border-color: var(--terra-dim); background: var(--terra-dim); }
+
+  /* expandable tabs inside stop */
+  .acc { border-top: 1px solid var(--line-soft); margin-top: 14px; }
+  .acc-btn {
+    width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+    padding: 12px 18px; display: flex; align-items: center; gap: 10px;
+    color: var(--cream); font-family: 'Inter'; font-size: 12px; letter-spacing: 0.5px;
+    transition: background 0.15s; font-weight: 400;
+  }
+  .acc-btn:hover { background: rgba(240,233,221,0.03); }
+  .acc-btn .acc-ico { color: var(--gold); font-size: 13px; width: 16px; text-align: center; }
+  .acc-btn .acc-label { flex: 1; text-transform: uppercase; letter-spacing: 1.5px; font-size: 10.5px; color: var(--gold); font-weight: 500; }
+  .acc-btn .acc-arrow { color: var(--muted); font-size: 11px; transition: transform 0.25s; }
+  .acc-btn.open .acc-arrow { transform: rotate(180deg); }
+  .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .acc-body-inner { padding: 2px 18px 16px; font-size: 13px; color: var(--cream-dim); line-height: 1.65; }
+  .acc-body-inner p { margin-bottom: 9px; }
+  .acc-body-inner p:last-child { margin-bottom: 0; }
+  .acc-body-inner strong { color: var(--cream); font-weight: 500; }
+  .acc-body-inner .pin { color: var(--gold-soft); }
+  .acc-body-inner ul { list-style: none; margin: 6px 0; }
+  .acc-body-inner li { position: relative; padding-left: 16px; margin-bottom: 5px; }
+  .acc-body-inner li::before { content:'·'; position: absolute; left: 4px; color: var(--gold); font-weight: 700; }
+
+  /* dining items */
+  .dine { display: flex; flex-direction: column; gap: 3px; padding: 9px 0; border-bottom: 1px solid var(--line-soft); }
+  .dine:last-child { border-bottom: none; padding-bottom: 0; }
+  .dine-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .dine-name { font-size: 13.5px; color: var(--cream); font-weight: 500; }
+  .dine-name em { font-style: italic; color: var(--gold-soft); font-family: 'Fraunces', serif; font-weight: 400; }
+  .ig {
+    font-size: 10.5px; color: var(--gold); text-decoration: none; letter-spacing: 0.3px;
+    border: 1px solid var(--gold-dim); padding: 1px 8px; border-radius: 20px;
+    display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; transition: background 0.15s;
+  }
+  .ig:hover { background: var(--gold-dim); }
+  .dine-desc { font-size: 12px; color: var(--cream-dim); line-height: 1.5; }
+  .dine-tag { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* action buttons (maps, call, etc) */
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .act-btn {
+    font-size: 11px; color: var(--cream); text-decoration: none; letter-spacing: 0.5px;
+    border: 1px solid var(--line); background: rgba(240,233,221,0.04); padding: 7px 13px;
+    border-radius: 20px; display: inline-flex; align-items: center; gap: 6px; transition: border-color 0.2s, background 0.2s;
+  }
+  .act-btn:hover { border-color: var(--gold); background: var(--gold-dim); }
+  .act-btn .ab-ico { color: var(--gold); font-size: 12px; }
+
+  /* callout / note boxes */
+  .note {
+    border-left: 2px solid var(--gold); background: rgba(201,162,39,0.06);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 14px 16px; margin: 16px 0;
+    font-size: 12.5px; color: var(--cream-dim); line-height: 1.6;
+  }
+  .note.warn { border-left-color: var(--terra); background: var(--terra-dim); }
+  .note.cafe { border-left-color: var(--sage); background: var(--sage-dim); }
+  .note .note-h { display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; font-weight: 600; }
+  .note.warn .note-h { color: var(--terra); }
+  .note.cafe .note-h { color: var(--sage); }
+  .note strong { color: var(--cream); font-weight: 500; }
+
+  /* hotel block within day */
+  .hotel-block {
+    background: linear-gradient(135deg, var(--card-hi), var(--card));
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; margin: 16px 0;
+  }
+  .hb-label { font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; font-weight: 600; display: flex; align-items: center; gap: 7px; }
+  .hb-name { font-family: 'Fraunces', serif; font-size: 19px; color: var(--cream); }
+  .hb-addr { font-size: 12px; color: var(--cream-dim); margin-top: 3px; }
+  .hb-grid { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; }
+  .hb-cell { font-size: 11px; }
+  .hb-cell .hbc-k { color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-size: 9px; }
+  .hb-cell .hbc-v { color: var(--cream); font-size: 13px; margin-top: 2px; }
+  .hb-cell .hbc-v.cafe-hl { color: var(--sage); font-weight: 500; }
+  .hb-pending {
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; color: var(--terra);
+  }
+
+  /* mini section divider inside day */
+  .day-block-label {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+    margin: 26px 0 2px; display: flex; align-items: center; gap: 10px; font-weight: 500;
+  }
+  .day-block-label::after { content:''; flex:1; height:1px; background: var(--line-soft); }
+  .day-block-label .dbl-ico { font-size: 13px; }
+
+  /* ============ LOGISTICA / TOOL SECTIONS ============ */
+  .tool { border-top: 1px solid var(--line); }
+  .tool.alt { background: var(--ink-soft); }
+  .tool-wrap { max-width: 860px; margin: 0 auto; padding: 56px 20px; }
+
+  .subtabs { display: flex; flex-wrap: wrap; gap: 7px; margin: 24px 0 6px; }
+  .subtab {
+    font-size: 11px; letter-spacing: 0.5px; color: var(--cream-dim); cursor: pointer;
+    border: 1px solid var(--line); background: var(--card); padding: 8px 14px; border-radius: 20px;
+    transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px; font-weight: 400;
+  }
+  .subtab:hover { border-color: var(--gold); color: var(--cream); }
+  .subtab.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold-soft); }
+  .panel { display: none; margin-top: 18px; }
+  .panel.active { display: block; animation: fadein 0.3s ease; }
+  @keyframes fadein { from{opacity:0} to{opacity:1} }
+
+  /* logistic rows */
+  .lrow {
+    background: var(--card); border: 1px solid var(--line-soft); border-radius: var(--radius);
+    padding: 16px 18px; margin-bottom: 10px;
+  }
+  .lrow-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+  .lrow-title { font-family: 'Fraunces', serif; font-size: 17px; color: var(--cream); }
+  .lrow-title em { font-style: italic; color: var(--gold-soft); }
+  .lrow-badge { font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-dim); padding: 2px 8px; border-radius: 12px; }
+  .lrow-badge.train { color: var(--blue); border-color: rgba(106,140,175,0.3); }
+  .lgrid { display: flex; flex-wrap: wrap; gap: 16px; }
+  .lcell { font-size: 11px; }
+  .lcell .lk { color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-size: 9px; }
+  .lcell .lv { color: var(--cream); font-size: 13.5px; margin-top: 2px; }
+  .lcell .lv.hl { color: var(--sage); font-weight: 500; }
+
+  /* editable guide fields */
+  .guide-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 16px 18px; margin-bottom: 12px;
+  }
+  .guide-day { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 3px; }
+  .guide-for { font-family: 'Fraunces', serif; font-size: 17px; color: var(--cream); margin-bottom: 12px; }
+  .guide-for em { font-style: italic; color: var(--gold-soft); }
+  .gfield { margin-bottom: 9px; }
+  .gfield label { display: block; font-size: 9.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .gfield input {
+    width: 100%; background: var(--ink); border: 1px solid var(--line); border-radius: var(--radius-sm);
+    padding: 10px 12px; color: var(--cream); font-family: 'Inter'; font-size: 13.5px; transition: border-color 0.2s;
+  }
+  .gfield input:focus { outline: none; border-color: var(--gold); }
+  .gfield input::placeholder { color: var(--muted); }
+  .guide-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .g-call {
+    font-size: 11px; color: var(--gold); text-decoration: none; border: 1px solid var(--gold-dim);
+    background: var(--gold-dim); padding: 7px 14px; border-radius: 20px; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .g-saved { font-size: 11px; color: var(--sage); display: none; align-items: center; gap: 5px; }
+  .g-saved.show { display: inline-flex; }
+
+  .save-hint {
+    font-size: 11.5px; color: var(--cream-dim); background: var(--sage-dim); border: 1px solid var(--sage-dim);
+    border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 18px; line-height: 1.55;
+  }
+  .save-hint b { color: var(--sage); }
+
+  /* pendencias */
+  .pend {
+    display: flex; gap: 13px; padding: 15px 0; border-bottom: 1px solid var(--line-soft); align-items: flex-start;
+  }
+  .pend:last-child { border-bottom: none; }
+  .pend-check {
+    flex: 0 0 auto; width: 22px; height: 22px; border-radius: 6px; border: 1.5px solid var(--gold);
+    cursor: pointer; display: flex; align-items: center; justify-content: center; margin-top: 1px;
+    transition: background 0.2s; background: transparent; font-size: 13px; color: var(--ink);
+  }
+  .pend-check.done { background: var(--gold); }
+  .pend-check.done::after { content:'✓'; color: var(--ink); font-weight: 700; }
+  .pend-body { flex: 1; }
+  .pend-title { font-size: 14px; color: var(--cream); font-weight: 500; }
+  .pend.urgent .pend-title::before {
+    content:'URGENTE'; display: inline-block; font-size: 8.5px; letter-spacing: 1.5px; color: var(--terra);
+    background: var(--terra-dim); border: 1px solid var(--terra-dim); padding: 1px 6px; border-radius: 4px; margin-right: 8px; vertical-align: middle; font-weight: 600;
+  }
+  .pend-desc { font-size: 12.5px; color: var(--cream-dim); margin-top: 4px; line-height: 1.55; }
+  .pend-desc a { color: var(--gold); }
+  .pend.done-row .pend-title, .pend.done-row .pend-desc { opacity: 0.45; text-decoration: line-through; text-decoration-color: var(--muted); }
+
+  /* mala / packing */
+  .pack-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+  .pack-cat {
+    background: var(--card); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 16px 18px;
+  }
+  .pack-cat-h { font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 11px; display: flex; align-items: center; gap: 8px; }
+  .pack-cat ul { list-style: none; }
+  .pack-cat li { position: relative; padding-left: 18px; font-size: 13px; color: var(--cream-dim); margin-bottom: 6px; line-height: 1.4; }
+  .pack-cat li::before { content:'·'; position: absolute; left: 5px; color: var(--gold); font-weight: 700; font-size: 15px; }
+  .pack-cat li b { color: var(--cream); font-weight: 500; }
+
+  .climate-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 20px 0; }
+  .clim {
+    background: var(--card); border: 1px solid var(--line-soft); border-left: 2px solid var(--gold); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 13px 16px;
+  }
+  .clim-place { font-family: 'Fraunces', serif; font-size: 16px; color: var(--cream); }
+  .clim-place em { color: var(--gold-soft); font-style: italic; }
+  .clim-temp { font-size: 11px; color: var(--gold-soft); letter-spacing: 0.5px; margin: 3px 0 5px; }
+  .clim-desc { font-size: 12px; color: var(--cream-dim); line-height: 1.5; }
+
+  /* timeline (cronograma do dia) */
+  .timeline { margin-top: 4px; }
+  .tl-row { display: flex; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--line-soft); align-items: baseline; }
+  .tl-row:last-child { border-bottom: none; }
+  .tl-time { flex: 0 0 92px; font-family: 'Fraunces', serif; font-size: 14px; color: var(--gold-soft); letter-spacing: 0.3px; }
+  .tl-what { font-size: 13px; color: var(--cream-dim); line-height: 1.45; }
+  .tl-row.hi .tl-time { color: var(--gold); }
+  .tl-row.hi .tl-what { color: var(--cream); font-weight: 500; }
+
+  /* ritual 10/10 */
+  .ritual {
+    margin: 26px 0; padding: 32px 24px; text-align: center;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,162,39,0.10), transparent 70%),
+      linear-gradient(165deg, #241a10, #1a1410);
+    border: 1px solid var(--line); border-radius: var(--radius); position: relative; overflow: hidden;
+  }
+  .ritual::before {
+    content:''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 120%, rgba(201,162,39,0.08), transparent 60%); pointer-events: none;
+  }
+  .ritual-mark {
+    font-family: 'Fraunces', serif; font-weight: 300; font-size: 46px; color: var(--gold);
+    letter-spacing: 4px; line-height: 1; opacity: 0.85;
+  }
+  .ritual-eyebrow {
+    font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold-soft);
+    margin-top: 14px; font-weight: 500;
+  }
+  .ritual-lead {
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; color: var(--cream-dim); margin-top: 16px;
+  }
+  .ritual-calc { margin: 16px 0; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .rc-line { font-family: 'Fraunces', serif; font-size: 16px; color: var(--cream); letter-spacing: 1px; }
+  .rc-line.big { font-size: 22px; }
+  .rc-line.big em { font-style: normal; color: var(--gold); font-size: 28px; }
+  .rc-arrow { color: var(--gold); font-size: 13px; opacity: 0.6; }
+  .ritual-body {
+    font-size: 13.5px; color: var(--cream-dim); line-height: 1.7; max-width: 540px; margin: 0 auto;
+  }
+  .ritual-body strong { color: var(--gold-soft); font-weight: 500; }
+  .ritual-intent { margin: 22px auto 0; max-width: 320px; text-align: left; }
+  .ri-h { display: block; text-align: center; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 600; }
+  .ritual-intent ul { list-style: none; }
+  .ritual-intent li {
+    position: relative; padding-left: 22px; font-size: 14px; color: var(--cream);
+    margin-bottom: 8px; font-family: 'Fraunces', serif; font-style: italic;
+  }
+  .ritual-intent li::before { content:'✦'; position: absolute; left: 2px; color: var(--gold); font-size: 11px; font-style: normal; top: 3px; }
+  .ritual-quote {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
+    font-size: 16px; line-height: 1.55; color: var(--gold-soft);
+    max-width: 520px; margin: 24px auto 0; position: relative; padding-top: 20px;
+  }
+  .ritual-quote::before { content:''; display: block; width: 36px; height: 1px; background: var(--gold); margin: 0 auto 18px; opacity: 0.5; }
+  .ritual-quote.pair { font-size: 15px; color: var(--cream); }
+  .rq-sub { display: block; font-style: normal; font-family: 'Inter'; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 12px; }
+
+  /* floating button */
+  .fab {
+    position: fixed; bottom: 20px; right: 16px; z-index: 300;
+    background: var(--gold); color: var(--ink); border: none; cursor: pointer;
+    border-radius: 30px; padding: 13px 18px; font-family: 'Inter'; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.5px; display: flex; align-items: center; gap: 7px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.4); transition: transform 0.2s, opacity 0.3s;
+  }
+  .fab:hover { transform: translateY(-2px); }
+  .fab:active { transform: scale(0.96); }
+  .fab .fab-ico { font-size: 14px; }
+  .fab.hidden { opacity: 0; pointer-events: none; transform: translateY(20px); }
+
+  /* offline badge */
+  .offline-note {
+    text-align: center; font-size: 11px; color: var(--muted); padding: 14px 20px; letter-spacing: 0.3px;
+  }
+  .offline-note b { color: var(--sage); }
+
+  @media (min-width: 600px) {
+    .pack-grid { grid-template-columns: 1fr 1fr; }
+    .climate-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="hero-eyebrow">Marco &amp; Gilberto · 02–14 Outubro 2026</div>
+  <h1><em>Peru</em></h1>
+  <div class="hero-sub">Lima · Cusco · Vale Sagrado · Machu Picchu</div>
+  <div class="hero-flight">
+    <div class="hf-col">
+      <div class="hf-label">Ida · GRU</div>
+      <div class="hf-date">02 Out</div>
+      <div class="hf-time">03:40 → 06:55</div>
+      <div class="hf-city">São Paulo → Lima</div>
+    </div>
+    <div class="hf-col mid">✈</div>
+    <div class="hf-col">
+      <div class="hf-label">Volta · LIM</div>
+      <div class="hf-date">13 Out</div>
+      <div class="hf-time">23:15 → 06:05</div>
+      <div class="hf-city">Lima → São Paulo</div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Rolar</span><div class="scroll-bar"></div></div>
+</header>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav" id="topnav">
+  <button class="nav-today-fixed" id="navToday">◉ Hoje</button>
+  <div class="nav-scroll">
+  <div class="nav-inner">
+    <a href="#resumo">Resumo</a>
+    <a href="#mapa">Destinos</a>
+    <a href="#lima-1">Lima</a>
+    <a href="#cusco">Cusco</a>
+    <a href="#valesul">Vale Sul</a>
+    <a href="#pisac">Pisac</a>
+    <a href="#vale">Vale Sagrado</a>
+    <a href="#ollanta">Ollantaytambo</a>
+    <a href="#machu">Machu Picchu</a>
+    <a href="#lima-2">Volta a Lima</a>
+    <a href="#logistica">Logística</a>
+    <a href="#mala">Mala</a>
+    <a href="#pendencias">Pendências</a>
+  </div>
+  </div>
+</nav>
+
+<!-- ===================== RESUMO ===================== -->
+<div class="summary anchor-pad" id="resumo">
+  <div class="sum-wrap">
+    <div class="eyebrow">Visão geral · 13 dias</div>
+    <h2 class="sec-title">O roteiro em <em>um olhar</em></h2>
+    <div class="sum-list">
+
+      <a class="sum-row" href="#lima-1">
+        <div class="sum-date">02<small>sex</small></div>
+        <div class="sum-main">Chegada em Lima<span>Miraflores · Huaca Pucllana à noite</span></div>
+        <div class="sum-sleep">dorme<br><b>Lima</b></div>
+      </a>
+      <a class="sum-row" href="#lima-1">
+        <div class="sum-date">03<small>sáb</small></div>
+        <div class="sum-main">Centro Histórico + Barranco<span>Lima colonial · bares à noite</span></div>
+        <div class="sum-sleep">dorme<br><b>Lima</b></div>
+      </a>
+      <a class="sum-row" href="#cusco">
+        <div class="sum-date">04<small>dom</small></div>
+        <div class="sum-main">Voo Lima → Cusco<span>Chegada 17:20 · aclimatação</span><span class="sum-flag">voo</span></div>
+        <div class="sum-sleep">dorme<br><b>Cusco</b></div>
+      </a>
+      <a class="sum-row" href="#cusco">
+        <div class="sum-date">05<small>seg</small></div>
+        <div class="sum-main">Cusco histórico + Sacsayhuamán<span>Plaza · Qorikancha · San Blas</span></div>
+        <div class="sum-sleep">dorme<br><b>Cusco</b></div>
+      </a>
+      <a class="sum-row" href="#valesul">
+        <div class="sum-date">06<small>ter</small></div>
+        <div class="sum-main">Vale Sul: Tipón + Pikillaqta<span>Motorista privado · troca de hotel</span></div>
+        <div class="sum-sleep">dorme<br><b>Cusco</b></div>
+      </a>
+      <a class="sum-row" href="#pisac">
+        <div class="sum-date">07<small>qua</small></div>
+        <div class="sum-main">Pisac<span>Sítio + vila · motorista privado</span></div>
+        <div class="sum-sleep">dorme<br><b>Cusco</b></div>
+      </a>
+      <a class="sum-row" href="#vale">
+        <div class="sum-date">08<small>qui</small></div>
+        <div class="sum-main">Chinchero · Moray · Maras → Ollanta<span>Dia de transferência · motorista</span></div>
+        <div class="sum-sleep">dorme<br><b>Ollanta</b></div>
+      </a>
+      <a class="sum-row" href="#ollanta">
+        <div class="sum-date">09<small>sex</small></div>
+        <div class="sum-main">Ollantaytambo → Aguas Calientes<span>Parque arqueológico · trem 19:04</span><span class="sum-flag">trem</span></div>
+        <div class="sum-sleep">dorme<br><b>A. Calientes</b></div>
+      </a>
+      <a class="sum-row" href="#machu">
+        <div class="sum-date">10<small>sáb</small></div>
+        <div class="sum-main">Machu Picchu → Cusco<span>Entrada cedo · trem + carro de volta</span><span class="sum-flag">trem</span></div>
+        <div class="sum-sleep">dorme<br><b>Cusco</b></div>
+      </a>
+      <a class="sum-row" href="#lima-2">
+        <div class="sum-date">11<small>dom</small></div>
+        <div class="sum-main">Ollantaytambo · Pachamanca · voo noturno<span>Vila livre · almoço terra e fogo · Cusco → Lima ~21h</span><span class="sum-flag">voo</span></div>
+        <div class="sum-sleep">dorme<br><b>Lima</b></div>
+      </a>
+      <a class="sum-row" href="#lima-2">
+        <div class="sum-date">12<small>seg</small></div>
+        <div class="sum-main">Ilhas Palomino + Lima leve<span>Lobos-marinhos · San Isidro</span></div>
+        <div class="sum-sleep">dorme<br><b>Lima</b></div>
+      </a>
+      <a class="sum-row" href="#lima-2">
+        <div class="sum-date">13<small>ter</small></div>
+        <div class="sum-main">Artesanato + Dédalo → voo<span>Miraflores · Barranco · GRU 23:15</span><span class="sum-flag">voo</span></div>
+        <div class="sum-sleep">dorme<br><b>avião</b></div>
+      </a>
+      <a class="sum-row" href="#logistica">
+        <div class="sum-date">14<small>qua</small></div>
+        <div class="sum-main">Chegada em São Paulo<span>GRU 06:05</span></div>
+        <div class="sum-sleep">—</div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MIND MAP ===================== -->
+<div class="mindmap anchor-pad" id="mapa">
+  <div class="mm-wrap">
+    <div class="eyebrow">Mapa mental · toque para navegar</div>
+    <h2 class="sec-title">Onde <em>vamos</em></h2>
+    <p class="sec-intro">Sete bases, do mar à montanha. Cada parada leva ao trecho do roteiro.</p>
+
+    <div class="mm-stage">
+
+      <div class="mm-leg">
+        <div class="mm-dot"></div>
+        <a class="mm-card" href="#lima-1">
+          <div class="mm-place"><em>Lima</em> · costa</div>
+          <div class="mm-days">02–03 Out · 2 noites · nível do mar</div>
+          <div class="mm-desc">Capital costeira. Miraflores à beira do Pacífico, Barranco boêmio, Centro Histórico colonial e a melhor gastronomia da América do Sul.</div>
+          <div class="mm-logi">✈ <b>chega 06:55 de GRU</b> · táxi/Uber na cidade</div>
+        </a>
+      </div>
+
+      <div class="mm-leg">
+        <div class="mm-dot"></div>
+        <a class="mm-card" href="#cusco">
+          <div class="mm-place"><em>Cusco</em> · 3.400m</div>
+          <div class="mm-days">04–07 + 10 Out · base andina</div>
+          <div class="mm-desc">Capital inca sobre a qual se ergueu a cidade colonial. Aclimatação, Qorikancha, Sacsayhuamán, San Blas e ponto de partida para os vales.</div>
+          <div class="mm-logi">✈ <b>voo de Lima, 1h20</b> · dorme 5 noites no total</div>
+        </a>
+      </div>
+
+      <div class="mm-leg">
+        <div class="mm-dot"></div>
+        <a class="mm-card" href="#valesul">
+          <div class="mm-place">Vale <em>Sul</em></div>
+          <div class="mm-days">06 Out · bate-volta de Cusco</div>
+          <div class="mm-desc">Tipón e sua engenharia hidráulica inca; Pikillaqta, cidade Wari pré-inca. O Peru antes dos incas, longe das multidões.</div>
+          <div class="mm-logi">🚗 <b>motorista privado</b> · ~40min de Cusco</div>
+        </a>
+      </div>
+
+      <div class="mm-leg">
+        <div class="mm-dot"></div>
+        <a class="mm-card" href="#pisac">
+          <div class="mm-place"><em>Pisac</em></div>
+          <div class="mm-days">07 Out · bate-volta de Cusco</div>
+          <div class="mm-desc">O sítio que mais merece tempo no vale: terraços monumentais, templo do sol, escala territorial e vista do Vale Sagrado.</div>
+          <div class="mm-logi">🚗 <b>motorista privado</b> · ~50min de Cusco</div>
+        </a>
+      </div>
+
+      <div class="mm-leg">
+        <div class="mm-dot"></div>
+        <a class="mm-card" href="#vale">
+          <div class="mm-place">Vale <em>Sagrado</em></div>
+          <div class="mm-days">08 Out · eixo oeste · transferência</div>
+          <div class="mm-desc">Chinchero têxtil, Moray e seus terraços circulares, Salinas de Maras. Dia de transferência com malas rumo a Ollantaytambo.</div>
+          <div class="mm-logi">🚗 <b>motorista privado com malas</b></div>
+        </a>
+      </div>
+
+      <div class="mm-leg">
+        <div class="mm-dot"></div>
+        <a class="mm-card" href="#ollanta">
+          <div class="mm-place"><em>Ollantaytambo</em></div>
+          <div class="mm-days">08–09 Out · 1 noite · 2.800m</div>
+          <div class="mm-desc">Cidade inca ainda viva — traçado original, canais de água nas ruas, fortaleza monumental. Base perfeita e portal de trem para Machu Picchu.</div>
+          <div class="mm-logi">🚆 <b>trem noturno para Aguas Calientes</b></div>
+        </a>
+      </div>
+
+      <div class="mm-leg">
+        <div class="mm-dot"></div>
+        <a class="mm-card" href="#machu">
+          <div class="mm-place"><em>Machu Picchu</em></div>
+          <div class="mm-days">09–10 Out · Aguas Calientes 1 noite</div>
+          <div class="mm-desc">A cidadela inca ao amanhecer, antes das multidões. Circuito 2 com guia. Dorme em Aguas Calientes para entrar no primeiro ônibus.</div>
+          <div class="mm-logi">🚆 <b>trem + 🚗 carro de volta a Cusco</b></div>
+        </a>
+      </div>
+
+      <div class="mm-leg">
+        <div class="mm-dot"></div>
+        <a class="mm-card" href="#lima-2">
+          <div class="mm-place"><em>Lima</em> · final</div>
+          <div class="mm-days">11–13 Out · 2 noites</div>
+          <div class="mm-desc">Manhã e Pachamanca em Ollantaytambo, voo noturno dia 11. Lima com Ilhas Palomino, San Isidro e o melhor do artesanato e design peruano antes do voo de volta.</div>
+          <div class="mm-logi">✈ <b>voo ~21h dia 11 · GRU dia 13, 23:15</b></div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ DIA 02 · LIMA CHEGADA ============ -->
+<section class="day anchor-pad" id="lima-1">
+  <div class="day-wrap">
+    <div class="day-head">
+      <div class="day-num">02<small>Sex</small></div>
+      <div class="day-titles">
+        <div class="day-kicker">Lima · Miraflores</div>
+        <h1 class="day-title">Chegada &amp; <em>borda do Pacífico</em></h1>
+        <span class="day-sleep-tag">◗ dorme em Lima / Miraflores</span>
+      </div>
+    </div>
+    <p class="day-lead">Chegada muito cedo (06:55). Dia leve por definição: aclimatar ao fuso, conhecer Miraflores a pé pela orla e fechar com a Huaca Pucllana iluminada à noite. Nada de museu ou maratona — o corpo vem de um voo de madrugada.</p>
+
+    <div class="img-ph">
+      <div class="ph-ico">▦</div>
+      <div class="ph-txt">Foto: Miraflores / orla do Pacífico</div>
+      <div class="ph-file">fotos/lima-hero.jpg</div>
+    </div>
+
+    <!-- HOTEL -->
+    <div class="hotel-block">
+      <div class="hb-label">◆ Hotel · 02–04 Out</div>
+      <div class="hb-name">Jose Antonio Deluxe</div>
+      <div class="hb-addr">Calle Bellavista 133, Miraflores</div>
+      <div class="hb-grid">
+        <div class="hb-cell"><div class="hbc-k">Check-in</div><div class="hbc-v">02 Out · 15:00</div></div>
+        <div class="hb-cell"><div class="hbc-k">Check-out</div><div class="hbc-v">04 Out · 12:00</div></div>
+        <div class="hb-cell"><div class="hbc-k">Café da manhã</div><div class="hbc-v cafe-hl">incluído</div></div>
+        <div class="hb-cell"><div class="hbc-k">Confirmação</div><div class="hbc-v">6582.204.512</div></div>
+      </div>
+      <div class="actions">
+        <a class="act-btn" href="https://www.google.com/maps/search/?api=1&query=Jose+Antonio+Deluxe+Calle+Bellavista+133+Miraflores+Lima" target="_blank"><span class="ab-ico">⊚</span>Abrir no Maps</a>
+        <a class="act-btn" href="tel:+5116415050"><span class="ab-ico">☏</span>Ligar</a>
+      </div>
+    </div>
+
+    <div class="note warn">
+      <span class="note-h">Chegada 06:55 — pedir com antecedência</span>
+      O quarto só fica pronto às 15:00. <strong>Negociar early check-in pago</strong> antes da viagem, ou deixar malas na recepção e sair para café/banho. Marcar isso já. (Ver Pendências.)
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">☀</span>Tarde · Miraflores a pé</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name">Orla de <em>Miraflores</em></div>
+        <div class="stop-why">Ver Lima pela borda do Pacífico: falésia, parques lineares e a cidade costeira mais confortável. O melhor de Miraflores é a beira-mar, não o miolo comercial.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>~2–3h</b></span>
+          <span class="chip">○ a pé, sem pressa</span>
+          <span class="chip guide">guia: não</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">↳</span><span class="acc-label">Trecho a percorrer</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p><strong>Roteiro curto:</strong> Malecón Cisneros → Parque del Amor → Larcomar → Huaca Pucllana à noite.</p>
+          <p>Pontos que valem a caminhada: <span class="pin">Malecón Cisneros</span>, <span class="pin">Malecón de la Reserva</span>, <span class="pin">Parque del Amor</span>, <span class="pin">Larcomar</span>, <span class="pin">Av. Larco</span>, <span class="pin">Parque Kennedy</span> se quiserem ver o miolo comercial, e <span class="pin">Calle General Borgoño</span> na área da Huaca Pucllana.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">☾</span>Noite · Huaca Pucllana</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name"><em>Huaca Pucllana</em> iluminada</div>
+        <div class="stop-why">Pirâmide cerimonial pré-inca em pleno Miraflores. Não é só ruína — é leitura urbana forte: arqueologia adobe dentro da cidade contemporânea. A visita noturna, iluminada, é a melhor versão.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>~1–1,5h</b></span>
+          <span class="chip">☾ visita noturna por reserva</span>
+          <span class="chip guide">guia do próprio sítio</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">◷</span><span class="acc-label">Logística</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Visita diurna de seg a dom, <strong>fechada às terças</strong>. Visita noturna de quarta a domingo, <strong>por reserva</strong> (ingresso noturno mais caro que o diurno).</p>
+          <p>Como caímos numa sexta, a noturna está disponível — vale reservar com antecedência.</p>
+          <p class="pin">📍 Calle General Borgoño cuadra 8, Miraflores</p>
+        </div></div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">✦</span><span class="acc-label">Dica do guia</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>A visita ao sítio é guiada pelo próprio museu — <strong>não precisa contratar guia privado</strong>.</p>
+          <p>O jantar no restaurante da huaca tem vista direta para a pirâmide iluminada. É a experiência completa: abertura simbólica da viagem.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">✦</span>Comer &amp; beber</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="acc-body-inner" style="padding:0">
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name"><em>Restaurant Huaca Pucllana</em></span><span class="dine-tag">jantar · vista</span></div>
+            <div class="dine-desc">Vale pela vista e pela experiência da huaca iluminada. Cozinha peruana contemporânea ao lado do sítio.</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">Alternativa leve em Miraflores</span><span class="dine-tag">jantar leve</span></div>
+            <div class="dine-desc">Se preferirem algo mais simples depois do voo da madrugada.</div>
+          </div>
+        </div>
+        <div class="acc" style="border-top:1px solid var(--line-soft); margin-top:12px">
+          <button class="acc-btn"><span class="acc-ico">◑</span><span class="acc-label">Pratos para começar Lima</span><span class="acc-arrow">▾</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p><strong>Salgados:</strong> ceviche, tiradito, causa limeña, arroz con mariscos, ají de gallina.</p>
+            <p><strong>Doces &amp; frutas:</strong> suspiro a la limeña, picarones, lúcuma, chirimoya, granadilla.</p>
+            <p>Para beber: suco de lúcuma, chirimoya ou maracujá. Café peruano.</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note cafe">
+      <span class="note-h">Deslocamento do dia</span>
+      <strong>Sem motorista privado.</strong> Tudo de táxi/Uber. Hospedados em Miraflores, a orla é a pé; Huaca Pucllana fica a ~10min de carro.
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ DIA 03 · CENTRO + BARRANCO ============ -->
+<section class="day anchor-pad" id="dia-03">
+  <div class="day-wrap">
+    <div class="day-head">
+      <div class="day-num">03<small>Sáb</small></div>
+      <div class="day-titles">
+        <div class="day-kicker">Lima · Centro Histórico + Barranco</div>
+        <h1 class="day-title">Lima <em>colonial</em> &amp; boêmia</h1>
+        <span class="day-sleep-tag">◗ dorme em Lima / Miraflores</span>
+      </div>
+    </div>
+    <p class="day-lead">De manhã, o Centro Histórico com guia — praça, catedral, San Francisco e catacumbas. À tarde e à noite, Barranco a pé: o bairro de mais atmosfera de Lima, fechando com jantar e bares.</p>
+
+    <div class="img-ph">
+      <div class="ph-ico">▦</div>
+      <div class="ph-txt">Foto: Barranco</div>
+      <div class="ph-file">fotos/barranco.jpg</div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">☀</span>Manhã · Centro Histórico</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name"><em>Centro Histórico</em> de Lima</div>
+        <div class="stop-why">A camada colonial: praça, convento, catacumbas, claustros, igreja barroca e urbanismo espanhol. San Francisco vale muito mais que uma igreja isolada — é conjunto conventual e histórico. Aqui o passeio tem que ser dirigido, não "andar solto".</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>3–4h</b></span>
+          <span class="chip">○ a pé</span>
+          <span class="chip guide">guia privado: sim</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">↳</span><span class="acc-label">Trecho a percorrer</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p><strong>Roteiro curto:</strong> Plaza Mayor → Catedral/Palácio por fora → Jirón de la Unión → San Francisco + catacumbas.</p>
+          <p>Eixo completo: <span class="pin">Plaza Mayor</span> → <span class="pin">Catedral de Lima</span> (por fora ou por dentro conforme o tempo) → <span class="pin">Palácio de Governo</span> por fora → <span class="pin">Jirón de la Unión</span> (eixo pedonal clássico) → <span class="pin">Jirón Ucayali</span> → <span class="pin">Jirón Áncash</span> → <span class="pin">Jirón Conde de Superunda</span> → <span class="pin">Plaza San Francisco</span> → <span class="pin">Convento San Francisco e Catacumbas</span>.</p>
+        </div></div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">◷</span><span class="acc-label">Logística</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>San Francisco abre às 9h, visita guiada de ~1h. <strong>Ir cedo</strong> para evitar filas.</p>
+          <p>O Museo Convento San Francisco tem guarda-volumes, útil se estiverem carregando algo.</p>
+          <p>De Miraflores/Barranco ao Centro: táxi/Uber (~25–35min). Mais eficiente e seguro que transporte público.</p>
+        </div></div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">✦</span><span class="acc-label">Dica do guia</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>O foco é a Lima colonial: praça, convento, catacumbas, biblioteca barroca, camadas de sincretismo. Peçam ao guia para explicar o urbanismo espanhol e a sobreposição com a cidade pré-hispânica.</p>
+          <p><strong>Doce de outubro:</strong> turrón de Doña Pepa — mesmo sem procissão, é o doce simbólico do mês. Comprar em lugar confiável (Belgravia, no Lince, é referência).</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">☾</span>Tarde &amp; noite · Barranco</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name"><em>Barranco</em> a pé</div>
+        <div class="stop-why">O bairro mais caminhável e com mais alma de Lima: casario, arte, declive até o mar, galerias, bares. Aqui vale caminhar sem pressa e sem roteiro rígido — é o melhor lugar para sentir Lima sem a rigidez monumental do Centro.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>tarde + noite</b></span>
+          <span class="chip">○ a pé, livre</span>
+          <span class="chip guide">guia: não</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">↳</span><span class="acc-label">Trecho a percorrer</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p><strong>Roteiro curto:</strong> Parque Municipal → Puente de los Suspiros → Bajada de Baños → Pedro de Osma → Malecón Paul Harris → jantar/drink.</p>
+          <p>Pontos: <span class="pin">Parque Municipal de Barranco</span>, <span class="pin">Puente de los Suspiros</span>, <span class="pin">Bajada de Baños</span>, <span class="pin">Jirón Domeyer</span>, <span class="pin">Av. Pedro de Osma</span> (entorno do MATE / Museo Pedro de Osma), <span class="pin">Malecón Paul Harris</span>.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">✦</span>Jantar em Barranco</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="acc-body-inner" style="padding:0">
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name"><em>Mérito</em></span><a class="ig" href="https://www.instagram.com/meritorest/" target="_blank">◎ @meritorest</a></div>
+            <div class="dine-desc">Alta gastronomia contemporânea, cozinha peruano-venezuelana. Entre os melhores da América Latina (Nº4 em 2025). Íntimo, cozinha aberta. Reserva pelo site.</div>
+            <div class="dine-tag">contemporâneo · Jr. 28 de Julio 206</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name"><em>Isolina</em></span><a class="ig" href="https://www.instagram.com/isolinataberna/" target="_blank">◎ @isolinataberna</a></div>
+            <div class="dine-desc">Taberna criolla clássica, comida caseira peruana, porções generosas para dividir. Ambiente vibrante. Não aceita reserva — pode ter fila.</div>
+            <div class="dine-tag">criollo · Av. San Martín 101</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">☾</span>Bares · depois do jantar</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="acc-body-inner" style="padding:0">
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name"><em>Victoria</em> Barranco</span><a class="ig" href="https://www.instagram.com/victoria__barranco/" target="_blank">◎ @victoria__barranco</a></div>
+            <div class="dine-desc">Coquetelaria fina em casarão restaurado, ambiente elegante, gay-friendly. Casa colonial com pátio e música ao vivo nos fins de semana.</div>
+            <div class="dine-tag">drinks · Pedro de Osma 135 · qua–sáb</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name"><em>Culpa</em> (Espacio Culpa)</span><span class="dine-tag">bar queer cultural</span></div>
+            <div class="dine-desc">Bar queer e cultural, ambiente artístico, programação variada (teatro, DJ). <strong>Ir se tiver programação boa no dia</strong> — vale conferir a agenda deles antes.</div>
+          </div>
+        </div>
+        <div class="note">
+          <span class="note-h">Nota sobre Victoria</span>
+          Há relatos de seletividade na entrada por vestimenta/aparência. Reservar pelo direct e chegar bem-arrumados ajuda.
+        </div>
+      </div>
+    </div>
+
+    <div class="note cafe">
+      <span class="note-h">Deslocamento do dia</span>
+      <strong>Sem motorista privado.</strong> Táxi/Uber para o Centro de manhã e de volta a Barranco. Barranco é todo a pé.
+    </div>
+
+  </div>
+</section>
+<!-- ============ DIA 04 · LIMA → CUSCO ============ -->
+<section class="day anchor-pad" id="cusco">
+  <div class="day-wrap">
+    <div class="day-head">
+      <div class="day-num">04<small>Dom</small></div>
+      <div class="day-titles">
+        <div class="day-kicker">Voo Lima → Cusco</div>
+        <h1 class="day-title">Subida aos <em>Andes</em></h1>
+        <span class="day-sleep-tag">◗ dorme em Cusco</span>
+      </div>
+    </div>
+    <p class="day-lead">Manhã leve em Lima, voo no meio da tarde e primeira noite em Cusco a 3.400m. Regra de ouro do primeiro dia em altitude: calma, hidratação, jantar leve e sono. Nada de caminhar demais ou exagerar no álcool.</p>
+
+    <!-- FLIGHT -->
+    <div class="hotel-block">
+      <div class="hb-label">✈ Voo · LATAM LA2021</div>
+      <div class="hb-grid">
+        <div class="hb-cell"><div class="hbc-k">Saída · Lima</div><div class="hbc-v">15:55</div></div>
+        <div class="hb-cell"><div class="hbc-k">Chegada · Cusco</div><div class="hbc-v">17:20</div></div>
+        <div class="hb-cell"><div class="hbc-k">Reserva</div><div class="hbc-v">QNVDWM</div></div>
+        <div class="hb-cell"><div class="hbc-k">Duração</div><div class="hbc-v">~1h25</div></div>
+      </div>
+      <div class="actions">
+        <a class="act-btn" href="https://www.latamairlines.com/br/pt/checkin" target="_blank"><span class="ab-ico">⊟</span>Check-in LATAM</a>
+      </div>
+    </div>
+
+    <!-- HOTEL -->
+    <div class="hotel-block">
+      <div class="hb-label">◆ Hotel · 04–06 Out</div>
+      <div class="hb-name">LP Los Portales Hotel Cusco</div>
+      <div class="hb-addr">Av. El Sol 602, Centro de Cusco</div>
+      <div class="hb-grid">
+        <div class="hb-cell"><div class="hbc-k">Check-in</div><div class="hbc-v">04 Out · 11:00</div></div>
+        <div class="hb-cell"><div class="hbc-k">Check-out</div><div class="hbc-v">06 Out · 10:00</div></div>
+        <div class="hb-cell"><div class="hbc-k">Café da manhã</div><div class="hbc-v cafe-hl">incluído</div></div>
+        <div class="hb-cell"><div class="hbc-k">Confirmação</div><div class="hbc-v">5660.280.029</div></div>
+      </div>
+      <div class="actions">
+        <a class="act-btn" href="https://www.google.com/maps/search/?api=1&query=LP+Los+Portales+Hotel+Cusco+Av+El+Sol+602" target="_blank"><span class="ab-ico">⊚</span>Abrir no Maps</a>
+        <a class="act-btn" href="tel:+51946136951"><span class="ab-ico">☏</span>Ligar</a>
+      </div>
+      <div class="note warn" style="margin-top:12px;margin-bottom:0">
+        <span class="note-h">Reserva não reembolsável</span>
+        Atenção: cancelamento cobra o valor total.
+      </div>
+    </div>
+
+    <div class="note warn">
+      <span class="note-h">★ Avisar no dia 1 — comprar o BTC Integral</span>
+      <strong>Boleto Turístico de Cusco — versão INTEGRAL (S/130, presencial).</strong> Cobre tudo que entra no roteiro: Sacsayhuamán, Tipón, Pikillaqta, Pisac, Ollantaytambo, Chinchero e Moray. Comprar os parciais separados sairia mais caro. A compra é presencial — pode ser no escritório do COSITUC ou nos próprios sítios. Deixar isso resolvido logo no primeiro dia em Cusco.
+    </div>
+
+    <div class="note cafe">
+      <span class="note-h">Aclimatação · primeira noite</span>
+      Cusco está em altitude alta. Sintomas leves de soroche (dor de cabeça, náusea) são comuns nas primeiras 12–24h. <strong>Hidratar muito, evitar álcool, refeição leve.</strong> Chá de coca ou muña ajuda. Sorojchi pills se necessário.
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">✦</span>Jantar leve · primeira noite</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="acc-body-inner" style="padding:0">
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">Morena Peruvian Kitchen</span><span class="dine-tag">peruano confortável</span></div>
+            <div class="dine-desc">Boa primeira noite — peruano confortável sem peso.</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name"><em>Cicciolina</em> Café</span><a class="ig" href="https://www.instagram.com/cicciolinacusco/" target="_blank">◎ @cicciolinacusco</a></div>
+            <div class="dine-desc">Opção segura e mais leve. O café é separado do restaurante principal.</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">Green Point</span><span class="dine-tag">leve / vegetal</span></div>
+            <div class="dine-desc">Se quiserem algo leve e vegetal na primeira noite em altitude.</div>
+          </div>
+        </div>
+        <div class="acc" style="border-top:1px solid var(--line-soft); margin-top:12px">
+          <button class="acc-btn"><span class="acc-ico">◑</span><span class="acc-label">O que comer (e evitar)</span><span class="acc-arrow">▾</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p><strong>Pedir:</strong> sopa de quinua, truta, ají de gallina, choclo con queso. Chá de muña sem exagero.</p>
+            <p><strong>Evitar na primeira noite:</strong> álcool demais, comida muito pesada, caminhar demais.</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note cafe">
+      <span class="note-h">Deslocamento do dia</span>
+      <strong>Sem motorista privado.</strong> Táxi/Uber do aeroporto ao hotel.
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ DIA 05 · CUSCO HISTÓRICO ============ -->
+<section class="day anchor-pad" id="dia-05">
+  <div class="day-wrap">
+    <div class="day-head">
+      <div class="day-num">05<small>Seg</small></div>
+      <div class="day-titles">
+        <div class="day-kicker">Cusco histórico + Sacsayhuamán</div>
+        <h1 class="day-title">Pedra inca, <em>cidade viva</em></h1>
+        <span class="day-sleep-tag">◗ dorme em Cusco</span>
+      </div>
+    </div>
+    <p class="day-lead">Dia cheio de Cusco com guia. Manhã no centro — Plaza de Armas, Catedral, Qorikancha, ruas incas, San Blas, Mercado de San Pedro e o MAP. Tarde em Sacsayhuamán. Cusco é sobre sobreposição: cidade inca + colonial + cidade viva.</p>
+
+    <div class="img-ph">
+      <div class="ph-ico">▦</div>
+      <div class="ph-txt">Foto: Cusco / Plaza de Armas</div>
+      <div class="ph-file">fotos/cusco-hero.jpg</div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">☀</span>Manhã · centro com guia</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name"><em>Plaza de Armas</em> &amp; Catedral</div>
+        <div class="stop-why">Coração colonial de Cusco: a catedral, a Compañía de Jesús, edifícios barrocos sobre fundações incas. Ponto de partida e leitura da conquista sobreposta à cidade inca.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>~1–1,5h</b></span>
+          <span class="chip">☀ manhã (menos sol)</span>
+          <span class="chip guide">guia privado: sim</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">◷</span><span class="acc-label">Logística</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Catedral abre às 10h, ingresso S/40 (não incluso no BTC). Interior fresco, arte sacra colonial.</p>
+          <p>A pé do hotel (Av. El Sol fica a poucos minutos da praça).</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name"><em>Qorikancha</em></div>
+        <div class="stop-why">O maior templo inca, dedicado ao sol, recoberto de ouro. Sobre suas pedras perfeitas os espanhóis ergueram o Convento de Santo Domingo — a sobreposição mais didática de Cusco.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>~1h</b></span>
+          <span class="chip">◷ fecha 17:30</span>
+          <span class="chip guide">guia ajuda muito</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">↳</span><span class="acc-label">Mais no centro</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>No mesmo circuito a pé: <span class="pin">ruas incas do centro</span>, a <span class="pin">Pedra dos 12 Ângulos</span>, e o bairro <span class="pin">San Blas</span> — rua dos artesãos, ateliês de cerâmica, lojinhas e mirante.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name">Mercado de <em>San Pedro</em></div>
+        <div class="stop-why">Mercado popular coberto, central. Temperos, frutas, comidas típicas e — o ponto para vocês — <strong>artesanato local</strong>. Autêntico, longe da encenação turística.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>~1–1,5h</b></span>
+          <span class="chip">☀ manhã (9–12h)</span>
+          <span class="chip">⊛ obrigatório p/ artesanato</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">✦</span><span class="acc-label">Dica do guia</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Melhor de manhã, produto fresco e vendedores atentos. A ~10min a pé da Plaza.</p>
+          <p>Para artesanato e têxteis, é um dos melhores pontos de Cusco com preço honesto — e muito mais autêntico que as feiras turísticas do Vale.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name">MAP · Museo de <em>Arte Precolombino</em></div>
+        <div class="stop-why">Coleção pré-colombiana selecionada do acervo do Museo Larco, em casarão colonial sobre antiga corte cerimonial inca. Climatizado, curadoria elegante — contextualiza tudo que se vê nas ruínas.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>~2h</b></span>
+          <span class="chip">◷ <b>chegar às 9:30</b></span>
+          <span class="chip guide">@mapcusco</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">◷</span><span class="acc-label">Logística</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Abre às 8h, vai até 22h. <strong>Chegar cedo (por volta de 9:30)</strong> rende mais e libera a tarde para Sacsayhuamán.</p>
+          <p class="pin">📍 Plazoleta de las Nazarenas, San Blas · <a class="ig" href="https://www.instagram.com/mapcusco/" target="_blank">◎ @mapcusco</a></p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">☾</span>Tarde · Sacsayhuamán</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name"><em>Sacsayhuamán</em></div>
+        <div class="stop-why">A fortaleza cerimonial inca de blocos ciclópicos — pedras de muitas toneladas encaixadas sem argamassa. Escala impressionante e vista panorâmica de Cusco. Faz com guia: a explicação do traçado e da engenharia transforma a visita.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>~2–3h</b></span>
+          <span class="chip">⊛ incluso no BTC</span>
+          <span class="chip guide">guia privado: sim</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">◷</span><span class="acc-label">Logística</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>A ~10–15min de táxi/Uber do centro (fica numa colina acima da cidade, 3.700m). Ir e voltar de carro pontual.</p>
+          <p>Sem Cristo Blanco e sem Q'enqo/Puka Pucara — cortados do roteiro.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">✦</span>Jantar &amp; bares</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="acc-body-inner" style="padding:0">
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name"><em>Chicha</em> por Gastón Acurio</span><a class="ig" href="https://www.instagram.com/chichacusco/" target="_blank">◎ @chichacusco</a></div>
+            <div class="dine-desc">Gastronomia cusquenha autoral do Gastón Acurio, pratos típicos em versão gourmet. Ótima relação custo-benefício. A uma quadra da Plaza de Armas.</div>
+            <div class="dine-tag">peruano arrumado · Plaza Regocijo 261</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name"><em>Cicciolina</em></span><a class="ig" href="https://www.instagram.com/cicciolinacusco/" target="_blank">◎ @cicciolinacusco</a></div>
+            <div class="dine-desc">Fusão peruano-mediterrânea, ambiente íntimo em casa colonial. Clássico e premiado. Reserva recomendada.</div>
+            <div class="dine-tag">fusão · Calle Palacio 110, 2º piso</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name"><em>Pachapapa</em></span><a class="ig" href="https://www.instagram.com/pachapapacusco/" target="_blank">◎ @pachapapacusco</a></div>
+            <div class="dine-desc">Em San Blas, pátio colonial e cozinha andina tradicional — alpaca, forno, ají de gallina. Atmosfera acolhedora.</div>
+            <div class="dine-tag">andino · San Blas</div>
+          </div>
+        </div>
+        <div class="acc" style="border-top:1px solid var(--line-soft); margin-top:12px">
+          <button class="acc-btn"><span class="acc-ico">☾</span><span class="acc-label">Bares · noite cusquenha</span><span class="acc-arrow">▾</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <div class="dine">
+              <div class="dine-top"><span class="dine-name"><em>Museo del Pisco</em></span><a class="ig" href="https://www.instagram.com/museodlpisco/" target="_blank">◎ @museodlpisco</a></div>
+              <div class="dine-desc">Pisco-bar famoso, coquetelaria premiada, aulas de pisco sour, música ao vivo. Mistura de turistas e comunidade local.</div>
+            </div>
+            <div class="dine">
+              <div class="dine-top"><span class="dine-name"><em>Limbus</em> Restobar</span><a class="ig" href="https://www.instagram.com/limbusrestobar/" target="_blank">◎ @limbusrestobar</a></div>
+              <div class="dine-desc">Em San Blas, um dos bares panorâmicos com melhor vista de Cusco. Coquetéis criativos, gay-friendly sem ostentação. Ir no pôr do sol.</div>
+            </div>
+          </div></div>
+        </div>
+
+    <div class="day-block-label"><span class="dbl-ico">✦</span>Atividade noturna opcional · Planetário</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name">Planetário <em>Cusco</em></div>
+        <div class="stop-why">Cruzamento entre cosmologia inca e astronomia real. Os incas liam o céu com precisão cirúrgica para agricultura, rituais e calendário. A experiência inclui palestra sobre astronomia inca, projeção virtual do hemisfério sul no domo e observação pelo telescópio. Dura ~2h e combina perfeitamente com jantar depois.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>~2h</b></span>
+          <span class="chip">◷ saída 17h30 · volta ~20h</span>
+          <span class="chip">💰 ~US$27/pessoa</span>
+          <span class="chip">⊟ reservar com antecedência</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">◷</span><span class="acc-label">Logística</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p><strong>Ponto de encontro:</strong> Plaza Regocijo, ao lado da fonte, às 17h30. O carro parte às 17h40 — os guias ficam com jaquetas e placas do Planetário.</p>
+          <p>O transporte de ida e volta está incluído no ingresso. O planetário fica próximo a Sacsayhuamán, 15min do centro.</p>
+          <p><strong>Onde comprar:</strong> pelo site oficial do Planetário (<em>planetariocusco.com</em>) ou pelo Viator/GetYourGuide. Grupo máximo de 22 pessoas — reservar com antecedência garante a vaga.</p>
+          <p class="pin">⚠ Levar agasalho — noites em Cusco são frias, e o planetário fica fora da cidade.</p>
+        </div></div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">✦</span><span class="acc-label">Por que vale</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Você passa o dia lendo pedras incas — à noite, lê o céu que os mesmos incas liam. Faz sentido em série. A astronomia inca não é ornamental: eles usavam constelações escuras (espaços sem estrelas) além das brilhantes, e o calendário ritual era astronômico com precisão de minutos. É o tipo de camada da civilização que nenhum sítio arqueológico consegue mostrar sozinho.</p>
+        </div></div>
+      </div>
+    </div>
+        <div class="acc">
+          <button class="acc-btn"><span class="acc-ico">◑</span><span class="acc-label">O que provar em Cusco</span><span class="acc-arrow">▾</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p><strong>Pratos:</strong> alpaca, truta, sopa de quinua, choclo con queso, ají de gallina, lomo saltado.</p>
+            <p><strong>Doce/fruta:</strong> chocolate peruano, torta e sorvete de lúcuma, aguaymanto.</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note cafe">
+      <span class="note-h">Deslocamento do dia</span>
+      <strong>Sem motorista privado o dia todo.</strong> Centro a pé; táxi/Uber só para subir e descer de Sacsayhuamán.
+    </div>
+
+  </div>
+</section>
+<!-- ============ DIA 06 · VALE SUL ============ -->
+<section class="day anchor-pad" id="valesul">
+  <div class="day-wrap">
+    <div class="day-head">
+      <div class="day-num">06<small>Ter</small></div>
+      <div class="day-titles">
+        <div class="day-kicker">Vale Sul · Tipón + Pikillaqta</div>
+        <h1 class="day-title">Água inca, <em>cidade Wari</em></h1>
+        <span class="day-sleep-tag">◗ dorme em Cusco (Afma Nueva Alta)</span>
+      </div>
+    </div>
+    <p class="day-lead">O Peru antes dos clássicos: Tipón e sua engenharia hidráulica inca, Pikillaqta e seu urbanismo Wari pré-inca. Dia de leitura histórica densa, longe das multidões. Tem troca de hotel — as malas vão no carro.</p>
+
+    <div class="img-ph">
+      <div class="ph-ico">▦</div>
+      <div class="ph-txt">Foto: Tipón</div>
+      <div class="ph-file">fotos/tipon.jpg</div>
+    </div>
+
+    <!-- HOTEL TROCA -->
+    <div class="hotel-block">
+      <div class="hb-label">◆ Troca de hotel · 06–08 Out</div>
+      <div class="hb-name">Afma Nueva Alta</div>
+      <div class="hb-addr">Calle Nueva Alta 424, Cusco</div>
+      <div class="hb-grid">
+        <div class="hb-cell"><div class="hbc-k">Check-out anterior</div><div class="hbc-v">LP Los Portales · 10:00</div></div>
+        <div class="hb-cell"><div class="hbc-k">Check-in</div><div class="hbc-v">06 Out · 12:00</div></div>
+        <div class="hb-cell"><div class="hbc-k">Check-out</div><div class="hbc-v">08 Out · 10:00</div></div>
+        <div class="hb-cell"><div class="hbc-k">Café da manhã</div><div class="hbc-v cafe-hl">incluído</div></div>
+        <div class="hb-cell"><div class="hbc-k">Confirmação</div><div class="hbc-v">6088.434.907</div></div>
+      </div>
+      <div class="actions">
+        <a class="act-btn" href="https://www.google.com/maps/search/?api=1&query=Afma+Nueva+Alta+Calle+Nueva+Alta+424+Cusco" target="_blank"><span class="ab-ico">⊚</span>Abrir no Maps</a>
+        <a class="act-btn" href="tel:+51941661769"><span class="ab-ico">☏</span>Ligar</a>
+      </div>
+    </div>
+
+    <div class="note">
+      <span class="note-h">★ Como chegar — opções de transporte</span>
+      <p style="margin-bottom:8px"><strong>Decidido: motorista privado o dia todo</strong> — obrigatório aqui. É dia de deslocamento entre sítios fora de Cusco com troca de hotel; o carro leva vocês, ajuda com as malas e dá ritmo livre. As alternativas, para referência:</p>
+      <ul style="list-style:none;margin:0">
+        <li style="position:relative;padding-left:16px;margin-bottom:6px"><span style="position:absolute;left:0;color:var(--gold)">▸</span><strong>Motorista privado</strong> — conforto, malas no carro, liberdade de ritmo, evita tour superficial. A melhor opção e a escolhida.</li>
+        <li style="position:relative;padding-left:16px;margin-bottom:6px"><span style="position:absolute;left:0;color:var(--muted)">▸</span><span style="color:var(--muted)">Táxi negociado de Cusco — mais barato, menos flexível, sem o conforto das malas.</span></li>
+        <li style="position:relative;padding-left:16px"><span style="position:absolute;left:0;color:var(--muted)">▸</span><span style="color:var(--muted)">Tour em grupo — descartado: empilha paradas e não combina com o perfil de vocês.</span></li>
+      </ul>
+    </div>
+
+    <div class="note">
+      <span class="note-h">Roteiro do dia</span>
+      Cusco → <strong>Tipón</strong> → <strong>Pikillaqta</strong> → Cusco. Saída ~08:30–09:00 com malas no carro. Tipón ~10h, Pikillaqta ~12h, almoço simples, check-in no Afma à tarde. <em>Sem Andahuaylillas e sem Oropesa.</em>
+    </div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name"><em>Tipón</em></div>
+        <div class="stop-why">Um dos sítios mais sofisticados da região para ler água, topografia e engenharia inca: canais, terraços, fontes e controle hídrico que ainda funcionam. Menos óbvio que os clássicos do Vale Sagrado — e mais inteligível.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>1,5–2h</b></span>
+          <span class="chip">☀ 8h–10h, multidão baixa</span>
+          <span class="chip">⊛ incluso no BTC</span>
+          <span class="chip guide">guia: sim</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">✦</span><span class="acc-label">Dica do guia</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Comecem por Tipón: é o sítio mais sensorial e fácil de entender. Peçam ao guia para explicar os <strong>sistemas de água</strong> — captação, canais e a função ritual/agrícola das fontes.</p>
+          <p>A ~40–50min de Cusco.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name"><em>Pikillaqta</em></div>
+        <div class="stop-why">Cidade Wari planejada, pré-inca — leitura urbana totalmente diferente: malha ortogonal, repetição, escala e muros altos. Raramente aprofundada em roteiros corridos; é o tipo de sítio que recompensa a interpretação de um bom guia.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>1,5–2h</b></span>
+          <span class="chip">○ multidão baixa</span>
+          <span class="chip">⊛ incluso no BTC</span>
+          <span class="chip guide">guia: sim</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">✦</span><span class="acc-label">Dica do guia</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Um bom guia diferencia <strong>Wari de Inca</strong> — não trata Pikillaqta como apêndice, mas como cidade pré-inca com lógica própria. É exatamente esse contraste que dá valor ao dia.</p>
+          <p>A ~20–25min de Tipón.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">✦</span>Comer</div>
+    <div class="stop">
+      <div class="stop-main">
+        <div class="acc-body-inner" style="padding:0">
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">Almoço no caminho</span><span class="dine-tag">simples</span></div>
+            <div class="dine-desc">Truta, sopa de quinua, prato criollo simples, choclo. Frutas: granadilla, chirimoya, tumbo em suco se aparecer.</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">Jantar em Cusco</span><span class="dine-tag">de volta</span></div>
+            <div class="dine-desc">Green Point (leve), <em>Cicciolina</em> Café, ou algo simples perto do novo hotel.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note cafe">
+      <span class="note-h">Deslocamento do dia</span>
+      <strong>Motorista privado o dia inteiro</strong> (com malas para a troca de hotel).
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ DIA 07 · PISAC ============ -->
+<section class="day anchor-pad" id="pisac">
+  <div class="day-wrap">
+    <div class="day-head">
+      <div class="day-num">07<small>Qua</small></div>
+      <div class="day-titles">
+        <div class="day-kicker">Pisac · bate-volta de Cusco</div>
+        <h1 class="day-title">Terraços &amp; <em>vale</em></h1>
+        <span class="day-sleep-tag">◗ dorme em Cusco (Afma Nueva Alta)</span>
+      </div>
+    </div>
+    <p class="day-lead">Dia dedicado só a Pisac — o sítio que mais merece tempo no Vale Sagrado. Terraços monumentais na encosta, templo do sol, leitura territorial e relação paisagem-arquitetura. A vila e o mercado entram como complemento; o essencial é o sítio.</p>
+
+    <div class="img-ph">
+      <div class="ph-ico">▦</div>
+      <div class="ph-txt">Foto: Pisac · sítio arqueológico</div>
+      <div class="ph-file">fotos/pisac.jpg</div>
+    </div>
+
+    <div class="note">
+      <span class="note-h">Roteiro do dia</span>
+      Saída ~08:30. Sítio arqueológico 09:30–12:00. Vila e almoço 12:30–14:00. Mercado e ruas 14:00–15:30. Retorno a Cusco ~16:30.
+    </div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name">Sítio de <em>Pisac</em></div>
+        <div class="stop-why">Escala e território: terraços que descem a encosta inteira, conjunto cerimonial no alto, e a relação com Pachacútec. É o sítio que mais pede tempo no vale — por isso está num dia só dele, separado de Chinchero-Moray-Maras.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>2,5–4h</b></span>
+          <span class="chip">☀ abertura ou fim da tarde</span>
+          <span class="chip">⊛ incluso no BTC</span>
+          <span class="chip guide">guia: sim (sítio)</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">↳</span><span class="acc-label">Sítio + vila</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>O <strong>sítio arqueológico</strong> é o essencial — guia ajuda muito na leitura dos terraços e do conjunto ritual. Depois, a <span class="pin">vila de Pisac</span> e o mercado entram como complemento leve.</p>
+          <p>A ~45–60min de Cusco.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">✦</span>Comer</div>
+    <div class="stop">
+      <div class="stop-main">
+        <div class="acc-body-inner" style="padding:0">
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">Cuchara de Palo</span><span class="dine-tag">Pisac · almoço</span></div>
+            <div class="dine-desc">Um dos melhores encaixes em Pisac — almoço antes ou depois das ruínas.</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">Almoço típico na vila</span><span class="dine-tag">Pisac</span></div>
+            <div class="dine-desc">Truta, choclo con queso, sopa andina, quinoa, tubérculos andinos. Frutas: granadilla, aguaymanto, chirimoya.</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">Jantar em Cusco</span><span class="dine-tag">de volta</span></div>
+            <div class="dine-desc"><em>Pachapapa</em> se não fizeram, Morena (peruano confortável), ou MAP Café se quiserem algo mais arrumado.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note cafe">
+      <span class="note-h">Deslocamento do dia</span>
+      <strong>Motorista privado</strong> · bate-volta Cusco → Pisac → Cusco.
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ DIA 08 · VALE SAGRADO → OLLANTA ============ -->
+<section class="day anchor-pad" id="vale">
+  <div class="day-wrap">
+    <div class="day-head">
+      <div class="day-num">08<small>Qui</small></div>
+      <div class="day-titles">
+        <div class="day-kicker">Chinchero · Moray · Maras → Ollantaytambo</div>
+        <h1 class="day-title">Eixo oeste &amp; <em>transferência</em></h1>
+        <span class="day-sleep-tag">◗ dorme em Ollantaytambo</span>
+      </div>
+    </div>
+    <p class="day-lead">Dia de transferência inteligente: o eixo oeste do Vale Sagrado, com malas no carro, terminando em Ollantaytambo. Chinchero têxtil, os terraços circulares de Moray e a paisagem mineral de Maras — e Ollanta não vira mero "dormitório de trem".</p>
+
+    <div class="img-ph">
+      <div class="ph-ico">▦</div>
+      <div class="ph-txt">Foto: Salinas de Maras</div>
+      <div class="ph-file">fotos/maras.jpg</div>
+    </div>
+
+    <!-- HOTEL A CONFIRMAR -->
+    <div class="hotel-block">
+      <div class="hb-label">◆ Hotel · 08–09 Out · Ollantaytambo</div>
+      <div class="hb-pending">Hotel a confirmar</div>
+      <div class="hb-addr" style="margin-top:6px">Reserva pendente — atualizar com o comprovante. (Ver Pendências.)</div>
+    </div>
+
+    <div class="note">
+      <span class="note-h">Roteiro do dia</span>
+      Saída ~08:30–09:00 com malas. Chinchero ~10h → centro têxtil ~11:30 → almoço em Urubamba/Pachar ~13h → Moray ~14:30 → Salinas de Maras ~16h → chegada em Ollantaytambo 17:30–18:30. Fim de tarde na vila ou Pinkuylluna.
+    </div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name"><em>Chinchero</em></div>
+        <div class="stop-why">Sobreposição Killke + Inca + colonial, e principalmente os têxteis — desde que o centro têxtil seja sério. Tecelagem em telar de cintura, tingimento natural, lã de alpaca de procedência real.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>1–2h + têxtil</b></span>
+          <span class="chip">☀ 8h–9h30 ou após 15h30</span>
+          <span class="chip">⊛ sítio incluso no BTC</span>
+          <span class="chip guide">guia: sim</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">⊛</span><span class="acc-label">Centro têxtil — qual escolher</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p><strong>A decidir</strong> entre centros sérios: CTTC, Qori Puskay, Tika, Centro Textil Acllas. Os bons fazem da explicação parte do projeto.</p>
+          <p>Filtro prático — peçam: <em>quem teceu esta peça, qual a composição da fibra, quais corantes, telar de cintura ou industrial?</em> Centros sérios respondem com naturalidade; os fracos deslizam para venda.</p>
+          <p><strong>Comprar no vale só:</strong> 1–2 têxteis realmente bons com história, e sal de Maras. O resto (cerâmica, alpaca fashion, objetos) deixar para Cusco/Lima, onde a comparação é mais fácil.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name"><em>Moray</em></div>
+        <div class="stop-why">Terraços circulares concêntricos — laboratório agrícola inca com microclimas em cada nível. Paisagem construída de força visual enorme, e contexto simbólico/agrícola único.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>45–75min</b></span>
+          <span class="chip">☀ abertura (evita multidão)</span>
+          <span class="chip">⊛ incluso no BTC</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name">Salinas de <em>Maras</em></div>
+        <div class="stop-why">Milhares de poças de sal escalonadas na encosta, em produção desde tempos pré-incas. Fotograficamente brutal e genuinamente singular. Como compra, a única coisa claramente "de lá": o sal de Maras.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>30–60min</b></span>
+          <span class="chip">☀ antes 9h ou após 15h</span>
+          <span class="chip">◷ verificar tarifa 2026</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">✦</span><span class="acc-label">Dica</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Souvenir gastronômico autêntico: sal rosa, flor de sal e derivados — compra que faz sentido na origem. A ~30min de Moray, descendo para o vale.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">✦</span>Jantar em Ollantaytambo</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="acc-body-inner" style="padding:0">
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name"><em>Chuncho</em></span><a class="ig" href="https://www.instagram.com/chuncho.pe/" target="_blank">◎ @chuncho.pe</a></div>
+            <div class="dine-desc">Foco em ingredientes do Vale e tradições de Ollantaytambo, da horta orgânica do El Albergue. Coquetéis com destilados próprios (Caña Alta, Matacuy). Na Plaza de Armas.</div>
+            <div class="dine-tag">vale do Urubamba · Plaza</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name"><em>El Albergue</em> Restaurant</span><a class="ig" href="https://www.instagram.com/elalbergue/" target="_blank">◎ @elalbergue</a></div>
+            <div class="dine-desc">Farm-to-table, ingredientes da própria fazenda. Muito prático se estiverem perto da estação. Bem avaliado, proposta peruana local.</div>
+            <div class="dine-tag">orgânico · estação de trem</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note cafe">
+      <span class="note-h">Deslocamento do dia</span>
+      <strong>Motorista privado o dia inteiro</strong>, com malas. Em Ollantaytambo, tudo a pé (táxi só se o hotel for afastado).
+    </div>
+
+  </div>
+</section>
+<!-- ============ DIA 09 · OLLANTAYTAMBO → AGUAS CALIENTES ============ -->
+<section class="day anchor-pad" id="ollanta">
+  <div class="day-wrap">
+    <div class="day-head">
+      <div class="day-num">09<small>Sex</small></div>
+      <div class="day-titles">
+        <div class="day-kicker">Ollantaytambo → Aguas Calientes</div>
+        <h1 class="day-title">Cidade <em>inca viva</em>, trem à noite</h1>
+        <span class="day-sleep-tag">◗ dorme em Aguas Calientes</span>
+      </div>
+    </div>
+    <p class="day-lead">Dia inteiro para Ollantaytambo — uma das leituras mais bonitas da viagem: sítio arqueológico, vila viva, canais de água nas ruas, malha urbana inca intacta. À noite, trem para Aguas Calientes só com mochila, deixando as malas no guarda-volumes da estação.</p>
+
+    <div class="img-ph">
+      <div class="ph-ico">▦</div>
+      <div class="ph-txt">Foto: Ollantaytambo</div>
+      <div class="ph-file">fotos/ollantaytambo.jpg</div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name">Parque Arqueológico de <em>Ollantaytambo</em></div>
+        <div class="stop-why">Fortaleza monumental com terraços que sobem a encosta, templo do sol com blocos ciclópicos e a pedreira do outro lado do vale. Faz com guia: o traçado, a função ritual-militar e a engenharia dos grandes blocos ganham muito com explicação.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>2–3h + vila</b></span>
+          <span class="chip">◷ 7h–16h30</span>
+          <span class="chip">⊛ incluso no BTC</span>
+          <span class="chip guide">guia: sim (parque)</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">↳</span><span class="acc-label">Parque + vila + canais</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Além do parque com guia: a <span class="pin">vila</span> e seus <span class="pin">canais de água</span> nas ruas, a <span class="pin">praça</span> e as <span class="pin">ruas incas</span>. A estrutura urbana inca segue legível — caminhar sem roteiro duro é parte do fascínio.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name"><em>Pinkuylluna</em> <span style="font-size:13px;color:var(--muted)">· opcional</span></div>
+        <div class="stop-why">Trilha curta até os antigos depósitos (qollqas) incas na encosta, com vista da vila, dos terraços e do sítio principal. Pequena joia para o perfil de vocês — íngreme mas rápida, e muito menos óbvia que a fortaleza.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>45–90min</b></span>
+          <span class="chip">☀ fim de tarde ou manhã cedo</span>
+          <span class="chip">⬈ íngreme, livre</span>
+          <span class="chip guide">guia: não</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">⚠</span><span class="acc-label">Quando fazer</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>É curta mas íngreme — não é passeio plano. <strong>Não fazer com chuva, cansaço extremo ou pouca luz.</strong> Melhor no fim de tarde (mais bonito), ou se preferirem, na manhã cedo deste dia antes do parque. Pode ter sido feita no dia 08 à chegada — se já fizeram, pular.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="note warn">
+      <span class="note-h">🎒 Malas — guarda-volumes da estação</span>
+      Deixar as <strong>malas de bordo no guarda-volumes gratuito da estação de Ollantaytambo</strong> e seguir para Aguas Calientes só com a mochila. A PeruRail mantém o guarda-volumes aberto das <strong>04:15 às 21:00</strong>, todos os dias.
+    </div>
+
+    <!-- TREM IDA -->
+    <div class="hotel-block">
+      <div class="hb-label">🚆 Trem · PeruRail Expedition (ida)</div>
+      <div class="hb-grid">
+        <div class="hb-cell"><div class="hbc-k">Saída · Ollantaytambo</div><div class="hbc-v">19:04</div></div>
+        <div class="hb-cell"><div class="hbc-k">Chegada · Aguas Calientes</div><div class="hbc-v">20:45</div></div>
+        <div class="hb-cell"><div class="hbc-k">Duração</div><div class="hbc-v">~1h41</div></div>
+        <div class="hb-cell"><div class="hbc-k">Categoria</div><div class="hbc-v">Expedition (regular)</div></div>
+      </div>
+      <div class="note" style="margin-top:12px;margin-bottom:0">
+        <span class="note-h">Por que o Expedition noturno</span>
+        Aguas Calientes é só base para dormir. Sem águas termais e sem pagar panorâmico à noite, faz mais sentido aproveitar Ollantaytambo o dia todo e pegar o trem regular da noite. Chegar na estação <strong>30min antes</strong>, com documento e bilhete em mãos.
+      </div>
+    </div>
+
+    <!-- HOTEL AGUAS CALIENTES -->
+    <div class="hotel-block">
+      <div class="hb-label">◆ Hotel · 09–10 Out · Aguas Calientes</div>
+      <div class="hb-name">Casa del Sol Machupicchu</div>
+      <div class="hb-addr">Av. Imperio de los Incas 608</div>
+      <div class="hb-grid">
+        <div class="hb-cell"><div class="hbc-k">Café da manhã</div><div class="hbc-v cafe-hl">incluído</div></div>
+        <div class="hb-cell"><div class="hbc-k">Translado</div><div class="hbc-v">grátis da estação</div></div>
+        <div class="hb-cell"><div class="hbc-k">Confirmação</div><div class="hbc-v">5000.881.092</div></div>
+      </div>
+      <div class="actions">
+        <a class="act-btn" href="https://www.google.com/maps/search/?api=1&query=Casa+del+Sol+Machupicchu+Av+Imperio+de+los+Incas+608" target="_blank"><span class="ab-ico">⊚</span>Abrir no Maps</a>
+        <a class="act-btn" href="tel:+5184211118"><span class="ab-ico">☏</span>Ligar</a>
+      </div>
+      <div class="note warn" style="margin-top:12px;margin-bottom:0">
+        <span class="note-h">⚠ Verificar datas da reserva</span>
+        O comprovante atual está com check-in 10/10. Para o roteiro, precisa ser <strong>09→10 Out</strong> (chegam dia 09 à noite). Em correção com o Gilberto — confirmar antes da viagem.
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">✦</span>Jantar simples · Aguas Calientes</div>
+    <div class="stop">
+      <div class="stop-main">
+        <div class="acc-body-inner" style="padding:0">
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">Full House · Mapacho · Indio Feliz</span><span class="dine-tag">prático, perto do hotel</span></div>
+            <div class="dine-desc">Nada ambicioso — o mais prático e perto do hotel. Sopa de quinua, truta, massa simples. Indio Feliz se quiserem algo um pouco mais arrumado.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHECKLIST VÉSPERA MACHU PICCHU -->
+    <div class="note warn" id="checklist-mp">
+      <span class="note-h">✓ Checklist da véspera — separar antes de dormir</span>
+      <p style="margin-bottom:8px">Amanhã se acorda muito cedo. Deixar pronto na mochila:</p>
+      <ul style="list-style:none;margin:0">
+        <li style="position:relative;padding-left:20px;margin-bottom:5px"><span style="position:absolute;left:0;color:var(--gold)">☐</span>Passaporte original (obrigatório na entrada e no ônibus)</li>
+        <li style="position:relative;padding-left:20px;margin-bottom:5px"><span style="position:absolute;left:0;color:var(--gold)">☐</span>Ingresso oficial de Machu Picchu</li>
+        <li style="position:relative;padding-left:20px;margin-bottom:5px"><span style="position:absolute;left:0;color:var(--gold)">☐</span>Bilhete do ônibus Consettur (comprar na véspera)</li>
+        <li style="position:relative;padding-left:20px;margin-bottom:5px"><span style="position:absolute;left:0;color:var(--gold)">☐</span>Capa de chuva leve</li>
+        <li style="position:relative;padding-left:20px;margin-bottom:5px"><span style="position:absolute;left:0;color:var(--gold)">☐</span>Casaco leve + protetor solar + repelente</li>
+        <li style="position:relative;padding-left:20px;margin-bottom:5px"><span style="position:absolute;left:0;color:var(--gold)">☐</span>Água em quantidade racional</li>
+        <li style="position:relative;padding-left:20px;margin-bottom:5px"><span style="position:absolute;left:0;color:var(--gold)">☐</span>Celular/câmera carregados</li>
+        <li style="position:relative;padding-left:20px"><span style="position:absolute;left:0;color:var(--terra)">✕</span><span style="color:var(--cream-dim)">NÃO levar: bastão, tripé, guarda-chuva, comida volumosa, mochila grande</span></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ DIA 10 · MACHU PICCHU ============ -->
+<section class="day anchor-pad" id="machu">
+  <div class="day-wrap">
+    <div class="day-head">
+      <div class="day-num">10<small>Sáb</small></div>
+      <div class="day-titles">
+        <div class="day-kicker">Machu Picchu → Cusco</div>
+        <h1 class="day-title">A <em>cidadela</em> ao amanhecer</h1>
+        <span class="day-sleep-tag">◗ dorme em Cusco</span>
+      </div>
+    </div>
+    <p class="day-lead">O ponto alto da viagem. Entrada cedo, antes das multidões, com guia oficial. Não é "foto" — é entender a cidade sagrada: eixo urbano, terraços, engenharia, relação arquitetura/montanha. Depois, trem de volta a Ollantaytambo e carro para Cusco.</p>
+
+    <div class="img-ph">
+      <div class="ph-ico">▦</div>
+      <div class="ph-txt">Foto: Machu Picchu</div>
+      <div class="ph-file">fotos/machu-picchu.jpg</div>
+    </div>
+
+    <div class="hotel-block">
+      <div class="hb-label">◷ Cronograma ideal do dia</div>
+      <div class="timeline">
+        <div class="tl-row"><div class="tl-time">04:45–05:00</div><div class="tl-what">Sair do hotel para a fila do ônibus</div></div>
+        <div class="tl-row"><div class="tl-time">05:30</div><div class="tl-what">Primeiros ônibus começam a subir</div></div>
+        <div class="tl-row hi"><div class="tl-time">07:00</div><div class="tl-what">Entrada em Machu Picchu — horário ideal</div></div>
+        <div class="tl-row"><div class="tl-time">07:00–10:00</div><div class="tl-what">Circuito 2A (ou 2B) com guia privado</div></div>
+        <div class="tl-row"><div class="tl-time">10:00–10:45</div><div class="tl-what">Descer de ônibus para Aguas Calientes</div></div>
+        <div class="tl-row"><div class="tl-time">11:00–12:30</div><div class="tl-what">Almoço simples em Aguas Calientes</div></div>
+        <div class="tl-row"><div class="tl-time">12:30–13:30</div><div class="tl-what">Pegar mochila no hotel · margem</div></div>
+        <div class="tl-row hi"><div class="tl-time">14:55</div><div class="tl-what">Trem Expedition para Ollantaytambo</div></div>
+      </div>
+      <div class="note" style="margin-top:14px;margin-bottom:0">
+        <span class="note-h">Veredicto</span>
+        Entrada <strong>07:00 + Circuito 2A + guia privado + almoço simples</strong> em Aguas Calientes é o desenho mais limpo: luz mais suave, fila menos brutal e chance ligeiramente melhor da neblina ter começado a abrir.
+      </div>
+    </div>
+
+    <!-- CARD 1: INGRESSO -->
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name">① Ingresso oficial &amp; <em>Circuito 2</em></div>
+        <div class="stop-why">Circuito 2 (Machupicchu Clásico) — o mais completo para primeira visita: mirante da foto clássica + área urbana. As rotas 2A e 2B são equivalentes; pegar a primeira disponível, sem obsessão.</div>
+        <div class="stop-meta">
+          <span class="chip">◷ <b>entrada 06:00 ou 07:00</b></span>
+          <span class="chip">⏱ 2,5–3h no sítio</span>
+          <span class="chip guide">guia oficial: sim</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">⚠</span><span class="acc-label">Onde comprar — site correto</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>A compra online oficial é em <strong>tuboleto.cultura.pe</strong> — o site machupicchu.gob.pe é só informativo, não vende.</p>
+          <p>Outubro é temporada alta oficial. O Circuito 2 cedo tem cota online limitada (~130 vagas por horário na rota 2A, ~125 na 2B). <strong>Não há troca de data nem de titular</strong> — comprar só depois de fechar trem e hotel.</p>
+          <p style="color:var(--terra)"><strong>★ Ainda não comprado. É a pendência mais urgente.</strong> (Ver Pendências.)</p>
+        </div></div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">✦</span><span class="acc-label">O que pedir ao guia</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Leitura urbana e hierarquia espacial; diferença entre setor agrícola e urbano; relação entre pedreira, drenagem e manejo de água; o Templo do Sol e os espelhos de água; o que é reconstrução, o que é original e o que é hipótese arqueológica.</p>
+          <p>Isso combina muito mais com vocês que a narração genérica de "sete maravilhas".</p>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- CARD 2: ÔNIBUS -->
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name">② Ônibus <em>Consettur</em> &amp; fila</div>
+        <div class="stop-why">O acesso à cidadela é pelo ônibus da Consettur, subindo de Aguas Calientes. ~25–30min de subida, frequência de 5–15min. Comprar o bilhete na véspera e sair com margem para a fila.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>25–30min subida</b></span>
+          <span class="chip">◷ opera desde 05:30</span>
+          <span class="chip">⊟ comprar na véspera</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">◷</span><span class="acc-label">Margem de fila</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Margem conservadora (outubro é alta temporada, demanda matinal concentrada):</p>
+          <p><strong>Entrada 06:00</strong> → estar na fila do ônibus por volta de <strong>04:45–05:00</strong>.<br><strong>Entrada 07:00</strong> → fila por volta de <strong>05:45–06:00</strong>.</p>
+          <p class="pin">📍 Parada/compra na Av. Hermanos Ayar, perto da estação. Levar passaporte ao embarcar.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- CARD 3: TREM VOLTA -->
+    <div class="hotel-block">
+      <div class="hb-label">🚆 ③ Trem · PeruRail Expedition (volta)</div>
+      <div class="hb-grid">
+        <div class="hb-cell"><div class="hbc-k">Saída · Aguas Calientes</div><div class="hbc-v">14:55</div></div>
+        <div class="hb-cell"><div class="hbc-k">Chegada · Ollantaytambo</div><div class="hbc-v">16:31</div></div>
+        <div class="hb-cell"><div class="hbc-k">Duração</div><div class="hbc-v">~1h36</div></div>
+        <div class="hb-cell"><div class="hbc-k">Categoria</div><div class="hbc-v">Expedition (regular)</div></div>
+      </div>
+      <div class="note warn" style="margin-top:12px;margin-bottom:0">
+        <span class="note-h">Atenção ao comprar</span>
+        Comprar a opção <strong>Regular Service / Train até Ollantaytambo</strong> — NÃO a bimodal para Cusco/Wanchaq. Em Ollanta pega-se as malas e segue de carro privado.
+      </div>
+    </div>
+
+    <!-- CARD 4: RETORNO A CUSCO -->
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name">④ <em>Ollantaytambo → Cusco</em></div>
+        <div class="stop-why">Motorista privado esperando na estação de Ollantaytambo. Pegar as malas no guarda-volumes e seguir direto para Cusco.</div>
+        <div class="stop-meta">
+          <span class="chip">🚗 <b>motorista privado</b></span>
+          <span class="chip">◷ saída 16:45–17:15</span>
+          <span class="chip">◷ chegada ~19:00–20:00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOTEL CUSCO A CONFIRMAR -->
+    <div class="hotel-block">
+      <div class="hb-label">◆ Hotel · 10–11 Out · Cusco</div>
+      <div class="hb-pending">Hotel a confirmar</div>
+      <div class="hb-addr" style="margin-top:6px">Reserva pendente — atualizar com o comprovante. (Ver Pendências.)</div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">✦</span>Comer</div>
+    <div class="stop">
+      <div class="stop-main">
+        <div class="acc-body-inner" style="padding:0">
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">Antes de subir</span><span class="dine-tag">leve / to-go</span></div>
+            <div class="dine-desc">Não depender de café da manhã longo. Café simples, banana, pão, barra, água.</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">Almoço em Aguas Calientes</span><span class="dine-tag">leve, pós-visita</span></div>
+            <div class="dine-desc">Sopa de quinua, truta, massa ou sanduíche, antes do trem.</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">Jantar em Cusco</span><span class="dine-tag">simples, recuperação</span></div>
+            <div class="dine-desc">Nada gastronômico. <em>Cicciolina</em> Café, Morena, Green Point ou room service. Dia de Machu Picchu cedo + retorno eficiente — o resto é logística.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RITUAL 10/10 -->
+    <div class="ritual">
+      <div class="ritual-mark">10 · 10</div>
+      <div class="ritual-eyebrow">A travessia · 10/10/2026</div>
+      <p class="ritual-lead">Uma data potente. A conta numerológica fecha em três:</p>
+      <div class="ritual-calc">
+        <span class="rc-line">1 + 0 + 1 + 0 + 2 + 0 + 2 + 6 = 12</span>
+        <span class="rc-arrow">↓</span>
+        <span class="rc-line big">1 + 2 = <em>3</em></span>
+      </div>
+      <p class="ritual-body">O <strong>10/10</strong> fala de fechamento de ciclo e reinício. O <strong>3</strong> fala de criação, expressão, manifestação e novo desenho de vida. Em Machu Picchu isso vira travessia simbólica: pedra, montanha, sol, altitude e caminho.</p>
+      <div class="ritual-intent">
+        <span class="ri-h">A intenção do dia</span>
+        <ul>
+          <li>encerrar um ciclo</li>
+          <li>devolver peso à terra</li>
+          <li>pedir clareza, proteção e direção</li>
+          <li>sair mais inteiro</li>
+        </ul>
+      </div>
+      <blockquote class="ritual-quote">
+        "Eu não vim tomar nada deste lugar. Vim atravessar com respeito, devolver peso à terra e sair mais inteiro."
+      </blockquote>
+      <blockquote class="ritual-quote pair">
+        "Que o que é nosso encontre caminho. Que o que não é nosso fique aqui."
+        <span class="rq-sub">— para nós dois</span>
+      </blockquote>
+    </div>
+
+    <div class="note cafe">
+      <span class="note-h">Café da manhã · crítico</span>
+      Confirmar com o Casa del Sol se servem café muito cedo ou <strong>lunch box / café to-go</strong> para a saída às 04:45. Se não, levar algo comprado na véspera.
+    </div>
+
+  </div>
+</section>
+<!-- ============ DIA 11 · OLLANTAYTAMBO → LIMA ============ -->
+<section class="day anchor-pad" id="lima-2">
+  <div class="day-wrap">
+    <div class="day-head">
+      <div class="day-num">11<small>Dom</small></div>
+      <div class="day-titles">
+        <div class="day-kicker">Ollantaytambo · Pachamanca · voo noturno</div>
+        <h1 class="day-title">Ritmo lento, <em>terra e fogo</em></h1>
+        <span class="day-sleep-tag">◗ dorme no avião / Lima</span>
+      </div>
+    </div>
+    <p class="day-lead">O dia de recuperação ativa que o roteiro pedia. Manhã livre em Ollantaytambo — vila, canais, sem agenda. Pachamanca ao meio-dia no El Albergue. Tarde antes de pegar o carro para Cusco e o voo noturno para Lima. Não é dia ocioso — é dia lento com substância.</p>
+
+    <div class="day-block-label"><span class="dbl-ico">☀</span>Manhã · Ollantaytambo livre</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name">Vila de <em>Ollantaytambo</em> · sem agenda</div>
+        <div class="stop-why">A manhã não tem sítio, não tem guia e não tem horário. Caminhar as ruas incas, observar os canais de água que correm entre as pedras, tomar café no El Albergue ou Café Mayu, sentar na praça. A estrutura urbana inca é legível só de caminhar — não precisa de explicação.</div>
+        <div class="stop-meta">
+          <span class="chip">○ a pé, livre</span>
+          <span class="chip">☕ café no El Albergue</span>
+          <span class="chip guide">sem guia</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">✦</span>Almoço · Pachamanca no El Albergue</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name"><em>Pachamanca</em> · El Albergue Farm</div>
+        <div class="stop-why">Método de cocção pré-hispânico: carnes e vegetais cozidos sobre pedras aquecidas enterradas. A experiência começa com tour da fazenda orgânica, destilaria de cañazo e torrefação de café — antes de ajudar a preparar a própria refeição. Servido em mesa de piquenique com vista para as ruínas e a montanha.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>~2–2,5h</b></span>
+          <span class="chip">◷ horário das 12h</span>
+          <span class="chip">💰 US$40/pessoa · mínimo 2</span>
+          <span class="chip">⊟ reservar com antecedência</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">◷</span><span class="acc-label">Logística &amp; o que inclui</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p><strong>Onde reservar:</strong> diretamente com o El Albergue — email <em>reservations@elalbergue.com</em> ou pelo site en.elalbergue.com/pachamanca. Aberto ao público mesmo para quem não está hospedado lá.</p>
+          <p><strong>Incluído:</strong> welcome cocktail de cañazo, tour da fazenda orgânica, destilaria e torrefação de café, almoço completo (frango, porco, cordeiro — alpaca ou cuy sob pedido), batatas andinas, vegetais da horta, salada da casa, molhos tradicionais e chicha morada. Vinho e cerveja à parte.</p>
+          <p><strong>Horários disponíveis:</strong> 12h00 e 14h30. Para o roteiro, usar o das <strong>12h</strong> — termina ~14h30, sobra tarde antes do carro.</p>
+          <p class="pin">📍 Av. Ferrocarril 1, Ollantaytambo — dentro da estação de trem. Entrar pela recepção do El Albergue.</p>
+        </div></div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">✦</span><span class="acc-label">Por que faz sentido aqui</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Você acabou de passar dias lendo arqueologia inca — ruínas, pedras, fortalezas. A Pachamanca é a culinária desse mesmo povo, com o mesmo método de há séculos. É a única experiência da viagem onde o foco é a terra em sentido literal: enterrar, cozinhar, desenterrar e comer. Fecha a semana nos Andes de uma forma completamente diferente de restaurante.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">☾</span>Tarde · saída para Cusco e voo</div>
+
+    <div class="note">
+      <span class="note-h">Sequência da tarde</span>
+      ~14h30 fim da Pachamanca · tarde livre na vila ou descanso no hotel · <strong>16h saída de carro para Cusco</strong> · ~18h chegada no aeroporto · <strong>~21h voo Cusco → Lima</strong> (a confirmar com o Gilberto) · ~22h30 chegada em Lima.
+    </div>
+
+    <!-- FLIGHT - A REMARCAR -->
+    <div class="hotel-block">
+      <div class="hb-label">✈ Voo · LATAM LA2239 — <span style="color:var(--terra)">a remarcar</span></div>
+      <div class="hb-grid">
+        <div class="hb-cell"><div class="hbc-k">Atual</div><div class="hbc-v" style="color:var(--muted);text-decoration:line-through">12:10 → 13:45</div></div>
+        <div class="hb-cell"><div class="hbc-k">Novo alvo</div><div class="hbc-v cafe-hl">~21h → ~22h30</div></div>
+        <div class="hb-cell"><div class="hbc-k">Reserva</div><div class="hbc-v">QNVDWM</div></div>
+        <div class="hb-cell"><div class="hbc-k">Tarifa</div><div class="hbc-v">Economy Light (multa de remarcação)</div></div>
+      </div>
+      <div class="note warn" style="margin-top:12px;margin-bottom:0">
+        <span class="note-h">⚠ Pendência — Gilberto remarcar o voo</span>
+        Verificar disponibilidade do voo das ~21h em 11/10 e o valor da multa de remarcação da tarifa Light antes de confirmar. (Ver Pendências.)
+      </div>
+    </div>
+
+    <!-- HOTEL LIMA -->
+    <div class="hotel-block">
+      <div class="hb-label">◆ Hotel · 11–12 Out · Lima</div>
+      <div class="hb-name">Hotel Jose Antonio</div>
+      <div class="hb-addr">Av. 28 de Julio 398, Miraflores</div>
+      <div class="hb-grid">
+        <div class="hb-cell"><div class="hbc-k">Check-in</div><div class="hbc-v">11 Out · 15:00 (chega tarde)</div></div>
+        <div class="hb-cell"><div class="hbc-k">Check-out</div><div class="hbc-v">12 Out · 12:00</div></div>
+        <div class="hb-cell"><div class="hbc-k">Café da manhã</div><div class="hbc-v cafe-hl">incluído</div></div>
+        <div class="hb-cell"><div class="hbc-k">Confirmação</div><div class="hbc-v">6615.843.201</div></div>
+      </div>
+      <div class="actions">
+        <a class="act-btn" href="https://www.google.com/maps/search/?api=1&query=Hotel+Jose+Antonio+Av+28+de+Julio+398+Miraflores+Lima" target="_blank"><span class="ab-ico">⊚</span>Abrir no Maps</a>
+        <a class="act-btn" href="tel:+5116415050"><span class="ab-ico">☏</span>Ligar</a>
+      </div>
+      <div class="note warn" style="margin-top:12px;margin-bottom:0">
+        <span class="note-h">Cobre só 11→12 · falta 12→13</span>
+        Chega tarde (~22h30) — o check-in será na madrugada. Avisar o hotel do horário de chegada tardio. Falta ainda reservar a noite 12→13. (Ver Pendências.)
+      </div>
+    </div>
+
+    <div class="note cafe">
+      <span class="note-h">Deslocamento do dia</span>
+      Manhã e almoço a pé em Ollantaytambo. <strong>Carro privado</strong> Ollantaytambo → Cusco (~16h, 1h30–2h). Táxi/Uber do aeroporto ao hotel em Lima.
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ DIA 12 · ILHAS PALOMINO ============ -->
+<section class="day anchor-pad" id="dia-12">
+  <div class="day-wrap">
+    <div class="day-head">
+      <div class="day-num">12<small>Seg</small></div>
+      <div class="day-titles">
+        <div class="day-kicker">Ilhas Palomino + Lima leve</div>
+        <h1 class="day-title">Lima pelo <em>mar</em></h1>
+        <span class="day-sleep-tag">◗ dorme em Lima / Miraflores</span>
+      </div>
+    </div>
+    <p class="day-lead">Manhã no mar: tour de barco às Ilhas Palomino em Callao, com lobos-marinhos e nado opcional de neoprene. Tarde leve, à escolha — San Isidro verde ou Miraflores. À noite, mais um bom jantar.</p>
+
+    <div class="img-ph">
+      <div class="ph-ico">▦</div>
+      <div class="ph-txt">Foto: Ilhas Palomino / lobos-marinhos</div>
+      <div class="ph-file">fotos/lima-hero.jpg</div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">☀</span>Manhã · Ilhas Palomino</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name">Ilhas <em>Palomino</em></div>
+        <div class="stop-why">Lima vista do mar: Callao, ilhas, aves marinhas e a colônia de lobos-marinhos. Nadar entre eles (de neoprene) é o ponto alto — memorável, mas opcional. Tour com pickup no hotel, barco, guia e equipamento.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>~5h, meia manhã</b></span>
+          <span class="chip">⊛ tour com traslado</span>
+          <span class="chip">⊘ não é motorista avulso</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">◷</span><span class="acc-label">Logística</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Pickup em Miraflores ~08:45–09:15 (van/SUV) → Callao/La Punta ~10h → barco ~10:30. Rota La Punta / San Lorenzo / El Frontón / Cavinzas / Palomino. Retorno início da tarde.</p>
+          <p>Neoprene e colete costumam vir incluídos no pacote "swim with sea lions" — <strong>confirmar no voucher</strong>. Taxa ambiental SERNANP (~S/11) paga em dinheiro no cais.</p>
+        </div></div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">🎒</span><span class="acc-label">O que levar</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Roupa de banho por baixo (sem vestiário no porto), toalha, corta-vento, protetor solar, roupa seca, chinelo, celular protegido. Remédio de enjoo 30–45min antes se tiver tendência — a água é fria (~15°C) e há ondas entre as ilhas.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">☾</span>Tarde leve · à escolha</div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name">Opção <em>San Isidro</em></div>
+        <div class="stop-why">Bairro nobre, verde e silencioso. O Bosque El Olivar (olivais centenários) é o eixo mais interessante, e a Huaca Huallamarca traz arqueologia pré-inca em meio às mansões.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>tarde</b></span>
+          <span class="chip">○ a pé + táxi</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">↳</span><span class="acc-label">Trecho a percorrer</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p><strong>Roteiro curto:</strong> Bosque El Olivar → ruas residenciais → Av. Conquistadores / Calle Miguel Dasso → Huaca Huallamarca → almoço/café.</p>
+          <p>Eixo: <span class="pin">Bosque El Olivar</span>, <span class="pin">Av. Los Incas</span>, <span class="pin">Calle La República</span>, <span class="pin">Av. Conquistadores</span>, <span class="pin">Calle Miguel Dasso</span>, <span class="pin">Huaca Huallamarca</span>.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name"><em>Huaca Huallamarca</em></div>
+        <div class="stop-why">Pirâmide pré-inca de adobe restaurada, em plena zona nobre de San Isidro. Pequena, mas é arqueologia rara cercada de arquitetura moderna — o contraste vale a parada.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>~40min</b></span>
+          <span class="chip">◷ fecha cedo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name">Opção <em>Miraflores</em></div>
+        <div class="stop-why">Se preferirem algo mais relax: Malecón, Larcomar, café e descanso.</div>
+        <div class="stop-meta"><span class="chip">⏱ <b>tarde leve</b></span></div>
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">✦</span>Comer</div>
+    <div class="stop">
+      <div class="stop-main">
+        <div class="acc-body-inner" style="padding:0">
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name"><em>La Mar</em></span><a class="ig" href="https://www.instagram.com/lamarcebicherialima/" target="_blank">◎ @lamarcebicherialima</a></div>
+            <div class="dine-desc">Cevicheria do Gastón Acurio, internacionalmente famosa — melhor no almoço, depois de Palomino. Ceviche, leche de tigre, boa coquetelaria.</div>
+            <div class="dine-tag">almoço · Av. La Mar 770</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">El Mercado · Pescados Capitales</span><span class="dine-tag">almoço · frutos do mar</span></div>
+            <div class="dine-desc">Alternativas de frutos do mar para o almoço pós-mar.</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">Mayta · Cosme · Rafael · Panchita</span><span class="dine-tag">jantar</span></div>
+            <div class="dine-desc">Mayta (contemporâneo especial), Cosme (relaxado), Rafael (elegante) ou Panchita (criollo confortável).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note cafe">
+      <span class="note-h">Deslocamento do dia</span>
+      <strong>Tour com traslado</strong> para Palomino; restante de táxi/Uber.
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ DIA 13 · ARTESANATO + VOO ============ -->
+<section class="day anchor-pad" id="dia-13">
+  <div class="day-wrap">
+    <div class="day-head">
+      <div class="day-num">13<small>Ter</small></div>
+      <div class="day-titles">
+        <div class="day-kicker">Artesanato · Dédalo · Barranco → voo</div>
+        <h1 class="day-title">Curadoria &amp; <em>despedida</em></h1>
+        <span class="day-sleep-tag">◗ dorme no avião</span>
+      </div>
+    </div>
+    <p class="day-lead">Último dia: compras com foco. Primeiro o Boulevard de Artesanía de Miraflores (variedade e lembranças), depois Dédalo em Barranco (curadoria e design). Barranco para fechar, e voo noturno para São Paulo.</p>
+
+    <div class="img-ph">
+      <div class="ph-ico">▦</div>
+      <div class="ph-txt">Foto: Barranco / Dédalo</div>
+      <div class="ph-file">fotos/barranco.jpg</div>
+    </div>
+
+    <div class="note">
+      <span class="note-h">Ordem do dia</span>
+      <strong>1.</strong> Boulevard de Artesanía de Miraflores primeiro · <strong>2.</strong> Dédalo (Barranco) depois. Ficam perto o suficiente para fazer de Uber no mesmo bloco.
+    </div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name">Boulevard de <em>Artesanía</em> de Miraflores</div>
+        <div class="stop-why">Mais de 1.500 artesãos em 14 galerias: talha de madeira, têxteis, cerâmica, cabaças buriladas, joias, prataria, retábulos. Lugar para olhar bastante, comparar e comprar lembranças melhores a preço acessível.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>1–2h</b></span>
+          <span class="chip">📍 Av. Petit Thouars q.52–55</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">◑</span><span class="acc-label">Comprar com foco</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Têxteis pequenos, cerâmica, peças em prata, retábulos pequenos, cabaças buriladas, objetos de madeira — lembranças com menos cara de souvenir genérico.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="stop-main">
+        <div class="stop-name"><em>Dédalo</em> · Barranco</div>
+        <div class="stop-why">Loja-galeria conceitual de artesanato e design contemporâneo, há mais de 30 anos. Arte, artesanato, moda, joias, objetos e café num casarão. Mais design, menos souvenir — alinhado ao olhar de vocês.</div>
+        <div class="stop-meta">
+          <span class="chip">⏱ <b>1–1,5h</b></span>
+          <span class="chip">📍 Av. Sáenz Peña 295</span>
+          <span class="chip">☕ tem café</span>
+        </div>
+      </div>
+      <div class="acc">
+        <button class="acc-btn"><span class="acc-ico">↳</span><span class="acc-label">Barranco final</span><span class="acc-arrow">▾</span></button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Depois de Dédalo, se houver energia: Av. Sáenz Peña → Parque Municipal → Puente de los Suspiros → Bajada de Baños → Malecón Paul Harris.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- FLIGHT VOLTA -->
+    <div class="hotel-block">
+      <div class="hb-label">✈ Voo · LATAM LA2418 (volta a GRU)</div>
+      <div class="hb-grid">
+        <div class="hb-cell"><div class="hbc-k">Saída · Lima</div><div class="hbc-v">23:15</div></div>
+        <div class="hb-cell"><div class="hbc-k">Chegada · GRU</div><div class="hbc-v">14 Out · 06:05</div></div>
+        <div class="hb-cell"><div class="hbc-k">Reserva</div><div class="hbc-v">HXICNW</div></div>
+        <div class="hb-cell"><div class="hbc-k">Classe</div><div class="hbc-v">Premium Economy</div></div>
+      </div>
+      <div class="actions">
+        <a class="act-btn" href="https://www.latamairlines.com/br/pt/checkin" target="_blank"><span class="ab-ico">⊟</span>Check-in LATAM</a>
+      </div>
+      <div class="note warn" style="margin-top:12px;margin-bottom:0">
+        <span class="note-h">Late check-out / day-use</span>
+        Voo às 23:15 — <strong>não ficar sem quarto.</strong> Negociar late check-out ou day-use pago com antecedência (depende da reserva 12→13). Sair para o aeroporto 19:30–20:00. (Ver Pendências.)
+      </div>
+    </div>
+
+    <div class="day-block-label"><span class="dbl-ico">✦</span>Comer</div>
+    <div class="stop">
+      <div class="stop-main">
+        <div class="acc-body-inner" style="padding:0">
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">Café no Dédalo</span><span class="dine-tag">lanche</span></div>
+            <div class="dine-desc">Se estiver funcionando — sobremesa de lúcuma ou chocolate. Almoço leve em Barranco ou Miraflores.</div>
+          </div>
+          <div class="dine">
+            <div class="dine-top"><span class="dine-name">Jantar cedo</span><span class="dine-tag">antes do voo</span></div>
+            <div class="dine-desc">Panchita (confortável), Rafael (elegante), ou <em>Mérito</em> <a class="ig" href="https://www.instagram.com/meritorest/" target="_blank">◎ @meritorest</a> para encerrar com jantar gastronômico em Barranco.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note cafe">
+      <span class="note-h">Deslocamento do dia</span>
+      <strong>Sem motorista privado.</strong> Táxi/Uber ou transfer do hotel para o aeroporto.
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ DIA 14 · CHEGADA ============ -->
+<section class="day anchor-pad" id="dia-14">
+  <div class="day-wrap">
+    <div class="day-head">
+      <div class="day-num">14<small>Qua</small></div>
+      <div class="day-titles">
+        <div class="day-kicker">Chegada em São Paulo</div>
+        <h1 class="day-title">De volta a <em>casa</em></h1>
+      </div>
+    </div>
+    <p class="day-lead">Chegada em Guarulhos às 06:05. Fim da viagem.</p>
+    <div class="hotel-block">
+      <div class="hb-label">✈ Chegada</div>
+      <div class="hb-grid">
+        <div class="hb-cell"><div class="hbc-k">GRU · São Paulo</div><div class="hbc-v">14 Out · 06:05</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===================== LOGÍSTICA ===================== -->
+<section class="tool anchor-pad" id="logistica">
+  <div class="tool-wrap">
+    <div class="eyebrow">Ferramenta de viagem</div>
+    <h2 class="sec-title">Logística &amp; <em>reservas</em></h2>
+    <p class="sec-intro">Tudo num lugar só: voos, trens, hotéis, guias, ingressos. Para consulta rápida durante a viagem.</p>
+
+    <div class="subtabs">
+      <div class="subtab active" data-panel="p-voos">✈ Voos</div>
+      <div class="subtab" data-panel="p-trens">🚆 Trens</div>
+      <div class="subtab" data-panel="p-hoteis">◆ Hotéis</div>
+      <div class="subtab" data-panel="p-guias">☷ Guias</div>
+      <div class="subtab" data-panel="p-ingressos">⊛ Ingressos</div>
+      <div class="subtab" data-panel="p-desloc">🚗 Deslocamentos</div>
+    </div>
+
+    <!-- VOOS -->
+    <div class="panel active" id="p-voos">
+      <div class="lrow">
+        <div class="lrow-top"><div class="lrow-title">GRU → <em>Lima</em></div><div class="lrow-badge">LA2395 · ida</div></div>
+        <div class="lgrid">
+          <div class="lcell"><div class="lk">Data</div><div class="lv">02 Out</div></div>
+          <div class="lcell"><div class="lk">Saída</div><div class="lv">03:40</div></div>
+          <div class="lcell"><div class="lk">Chegada</div><div class="lv">06:55</div></div>
+          <div class="lcell"><div class="lk">Reserva</div><div class="lv hl">HXICNW</div></div>
+          <div class="lcell"><div class="lk">Classe</div><div class="lv">Economy Full</div></div>
+        </div>
+      </div>
+      <div class="lrow">
+        <div class="lrow-top"><div class="lrow-title">Lima → <em>Cusco</em></div><div class="lrow-badge">LA2021</div></div>
+        <div class="lgrid">
+          <div class="lcell"><div class="lk">Data</div><div class="lv">04 Out</div></div>
+          <div class="lcell"><div class="lk">Saída</div><div class="lv">15:55</div></div>
+          <div class="lcell"><div class="lk">Chegada</div><div class="lv">17:20</div></div>
+          <div class="lcell"><div class="lk">Reserva</div><div class="lv hl">QNVDWM</div></div>
+          <div class="lcell"><div class="lk">Classe</div><div class="lv">Economy Light</div></div>
+        </div>
+      </div>
+      <div class="lrow" style="border:1px solid var(--terra-dim)">
+        <div class="lrow-top"><div class="lrow-title">Cusco → <em>Lima</em></div><div class="lrow-badge" style="color:var(--terra);border-color:var(--terra-dim)">LA2239 · a remarcar</div></div>
+        <div class="lgrid">
+          <div class="lcell"><div class="lk">Data</div><div class="lv">11 Out</div></div>
+          <div class="lcell"><div class="lk">Atual (remarcar)</div><div class="lv" style="text-decoration:line-through;color:var(--muted)">12:10 → 13:45</div></div>
+          <div class="lcell"><div class="lk">Novo alvo</div><div class="lv cafe-hl">~21h → ~22h30</div></div>
+          <div class="lcell"><div class="lk">Reserva</div><div class="lv hl">QNVDWM</div></div>
+        </div>
+      </div>
+      <div class="lrow">
+        <div class="lrow-top"><div class="lrow-title">Lima → <em>GRU</em></div><div class="lrow-badge">LA2418 · volta</div></div>
+        <div class="lgrid">
+          <div class="lcell"><div class="lk">Data</div><div class="lv">13 Out → 14</div></div>
+          <div class="lcell"><div class="lk">Saída</div><div class="lv">23:15</div></div>
+          <div class="lcell"><div class="lk">Chegada</div><div class="lv">06:05</div></div>
+          <div class="lcell"><div class="lk">Reserva</div><div class="lv hl">HXICNW</div></div>
+          <div class="lcell"><div class="lk">Classe</div><div class="lv">Premium Economy</div></div>
+        </div>
+      </div>
+      <div class="note">
+        <span class="note-h">Passageiros &amp; bagagem</span>
+        <p>Gilberto Nascimento Junior · Marco Granzotto (passaporte FU337889).</p>
+        <p><strong>Economy Light/Full:</strong> 1 item pessoal (10kg, 45×35×20cm) + 1 mala de mão (12kg, 55×35×25cm). Voos internacionais incluem 1 despachada de 23kg.</p>
+      </div>
+      <div class="actions"><a class="act-btn" href="https://www.latamairlines.com/br/pt/checkin" target="_blank"><span class="ab-ico">⊟</span>Check-in LATAM</a></div>
+    </div>
+
+    <!-- TRENS -->
+    <div class="panel" id="p-trens">
+      <div class="lrow">
+        <div class="lrow-top"><div class="lrow-title">Ollantaytambo → <em>Aguas Calientes</em></div><div class="lrow-badge train">ida · 09 Out</div></div>
+        <div class="lgrid">
+          <div class="lcell"><div class="lk">Saída</div><div class="lv">19:04</div></div>
+          <div class="lcell"><div class="lk">Chegada</div><div class="lv">20:45</div></div>
+          <div class="lcell"><div class="lk">Duração</div><div class="lv">~1h41</div></div>
+          <div class="lcell"><div class="lk">Categoria</div><div class="lv hl">PeruRail Expedition</div></div>
+        </div>
+      </div>
+      <div class="lrow">
+        <div class="lrow-top"><div class="lrow-title">Aguas Calientes → <em>Ollantaytambo</em></div><div class="lrow-badge train">volta · 10 Out</div></div>
+        <div class="lgrid">
+          <div class="lcell"><div class="lk">Saída</div><div class="lv">14:55</div></div>
+          <div class="lcell"><div class="lk">Chegada</div><div class="lv">16:31</div></div>
+          <div class="lcell"><div class="lk">Duração</div><div class="lv">~1h36</div></div>
+          <div class="lcell"><div class="lk">Categoria</div><div class="lv hl">Expedition (Regular)</div></div>
+        </div>
+      </div>
+      <div class="note warn">
+        <span class="note-h">Regras críticas</span>
+        <p><strong>Volta:</strong> comprar Regular Service até Ollantaytambo — NÃO a bimodal para Cusco.</p>
+        <p><strong>Bagagem PeruRail:</strong> 1 peça por passageiro — 1 mochila até 8kg OU 1 mala de mão até 12kg (máx 100cm lineares mochila / 115cm carry-on).</p>
+        <p><strong>Guarda-volumes Ollantaytambo:</strong> grátis, 04:15–21:00. Deixar as malas grandes ali e seguir só com mochila.</p>
+      </div>
+    </div>
+
+    <!-- HOTÉIS -->
+    <div class="panel" id="p-hoteis">
+      <div class="lrow">
+        <div class="lrow-top"><div class="lrow-title"><em>Jose Antonio Deluxe</em></div><div class="lrow-badge">02–04 · Lima</div></div>
+        <div class="lgrid">
+          <div class="lcell"><div class="lk">Endereço</div><div class="lv">Calle Bellavista 133, Miraflores</div></div>
+          <div class="lcell"><div class="lk">Check-in / out</div><div class="lv">15:00 / 12:00</div></div>
+          <div class="lcell"><div class="lk">Confirmação</div><div class="lv hl">6582.204.512 · PIN 0878</div></div>
+          <div class="lcell"><div class="lk">Tel</div><div class="lv">+51 1 6415050</div></div>
+        </div>
+      </div>
+      <div class="lrow">
+        <div class="lrow-top"><div class="lrow-title"><em>LP Los Portales</em></div><div class="lrow-badge">04–06 · Cusco</div></div>
+        <div class="lgrid">
+          <div class="lcell"><div class="lk">Endereço</div><div class="lv">Av. El Sol 602</div></div>
+          <div class="lcell"><div class="lk">Check-in / out</div><div class="lv">11:00 / 10:00</div></div>
+          <div class="lcell"><div class="lk">Confirmação</div><div class="lv hl">5660.280.029 · PIN 7181</div></div>
+          <div class="lcell"><div class="lk">Tel</div><div class="lv">+51 946 136 951</div></div>
+        </div>
+      </div>
+      <div class="lrow">
+        <div class="lrow-top"><div class="lrow-title"><em>Afma Nueva Alta</em></div><div class="lrow-badge">06–08 · Cusco</div></div>
+        <div class="lgrid">
+          <div class="lcell"><div class="lk">Endereço</div><div class="lv">Calle Nueva Alta 424</div></div>
+          <div class="lcell"><div class="lk">Check-in / out</div><div class="lv">12:00 / 10:00</div></div>
+          <div class="lcell"><div class="lk">Confirmação</div><div class="lv hl">6088.434.907 · PIN 2016</div></div>
+          <div class="lcell"><div class="lk">Tel</div><div class="lv">+51 941 661 769</div></div>
+        </div>
+      </div>
+      <div class="lrow" style="border-style:dashed;border-color:var(--terra-dim)">
+        <div class="lrow-top"><div class="lrow-title hb-pending">Hotel a confirmar</div><div class="lrow-badge">08–09 · Ollantaytambo</div></div>
+        <div class="lcell"><div class="lv" style="color:var(--terra);font-size:12px">Reserva pendente</div></div>
+      </div>
+      <div class="lrow">
+        <div class="lrow-top"><div class="lrow-title"><em>Casa del Sol</em></div><div class="lrow-badge">09–10 · A. Calientes</div></div>
+        <div class="lgrid">
+          <div class="lcell"><div class="lk">Endereço</div><div class="lv">Av. Imperio de los Incas 608</div></div>
+          <div class="lcell"><div class="lk">Translado</div><div class="lv hl">grátis da estação</div></div>
+          <div class="lcell"><div class="lk">Confirmação</div><div class="lv hl">5000.881.092 · PIN 2838</div></div>
+          <div class="lcell"><div class="lk">Tel</div><div class="lv">+51 84 211118</div></div>
+        </div>
+        <div class="note warn" style="margin-top:10px;margin-bottom:0"><span class="note-h">Verificar datas (09→10)</span>Comprovante atual com 10→11. Em correção.</div>
+      </div>
+      <div class="lrow" style="border-style:dashed;border-color:var(--terra-dim)">
+        <div class="lrow-top"><div class="lrow-title hb-pending">Hotel a confirmar</div><div class="lrow-badge">10–11 · Cusco</div></div>
+        <div class="lcell"><div class="lv" style="color:var(--terra);font-size:12px">Reserva pendente</div></div>
+      </div>
+      <div class="lrow">
+        <div class="lrow-top"><div class="lrow-title"><em>Hotel Jose Antonio</em></div><div class="lrow-badge">11–12 · Lima</div></div>
+        <div class="lgrid">
+          <div class="lcell"><div class="lk">Endereço</div><div class="lv">Av. 28 de Julio 398, Miraflores</div></div>
+          <div class="lcell"><div class="lk">Check-in / out</div><div class="lv">15:00 / 12:00</div></div>
+          <div class="lcell"><div class="lk">Confirmação</div><div class="lv hl">6615.843.201 · PIN 4596</div></div>
+          <div class="lcell"><div class="lk">Tel</div><div class="lv">+51 1 6415050</div></div>
+        </div>
+      </div>
+      <div class="lrow" style="border-style:dashed;border-color:var(--terra-dim)">
+        <div class="lrow-top"><div class="lrow-title hb-pending">Hotel a confirmar</div><div class="lrow-badge">12–13 · Lima</div></div>
+        <div class="lcell"><div class="lv" style="color:var(--terra);font-size:12px">Reserva pendente</div></div>
+      </div>
+    </div>
+
+    <!-- GUIAS (editável) -->
+    <div class="panel" id="p-guias">
+      <div class="save-hint">
+        <b>◈ Campos editáveis.</b> Preencha o nome e telefone de cada guia conforme contratar. Os dados ficam salvos <b>neste aparelho</b> (mesmo offline) — toque em "Salvar" após preencher.
+      </div>
+
+      <div class="guide-card" data-guide="g1">
+        <div class="guide-day">03 Out · sábado</div>
+        <div class="guide-for">Centro Histórico de <em>Lima</em></div>
+        <div class="gfield"><label>Nome / agência</label><input type="text" data-field="name" placeholder="ex: João — guia privado"></div>
+        <div class="gfield"><label>Telefone / WhatsApp</label><input type="tel" data-field="phone" placeholder="ex: +51 9..."></div>
+        <div class="guide-actions"><button class="g-call" data-save>◈ Salvar</button><span class="g-saved">✓ salvo</span><a class="g-call g-dial" style="display:none" data-dial>☏ Ligar</a></div>
+      </div>
+
+      <div class="guide-card" data-guide="g2">
+        <div class="guide-day">05 Out · segunda</div>
+        <div class="guide-for"><em>Cusco</em> histórico + Sacsayhuamán</div>
+        <div class="gfield"><label>Nome / agência</label><input type="text" data-field="name" placeholder="—"></div>
+        <div class="gfield"><label>Telefone / WhatsApp</label><input type="tel" data-field="phone" placeholder="—"></div>
+        <div class="guide-actions"><button class="g-call" data-save>◈ Salvar</button><span class="g-saved">✓ salvo</span><a class="g-call g-dial" style="display:none" data-dial>☏ Ligar</a></div>
+      </div>
+
+      <div class="guide-card" data-guide="g3">
+        <div class="guide-day">06 Out · terça</div>
+        <div class="guide-for">Vale Sul · <em>Tipón + Pikillaqta</em></div>
+        <div class="gfield"><label>Nome / agência</label><input type="text" data-field="name" placeholder="—"></div>
+        <div class="gfield"><label>Telefone / WhatsApp</label><input type="tel" data-field="phone" placeholder="—"></div>
+        <div class="gfield"><label>Motorista (se separado)</label><input type="text" data-field="extra" placeholder="nome + telefone"></div>
+        <div class="guide-actions"><button class="g-call" data-save>◈ Salvar</button><span class="g-saved">✓ salvo</span><a class="g-call g-dial" style="display:none" data-dial>☏ Ligar</a></div>
+      </div>
+
+      <div class="guide-card" data-guide="g4">
+        <div class="guide-day">07 Out · quarta</div>
+        <div class="guide-for"><em>Pisac</em></div>
+        <div class="gfield"><label>Nome / agência</label><input type="text" data-field="name" placeholder="—"></div>
+        <div class="gfield"><label>Telefone / WhatsApp</label><input type="tel" data-field="phone" placeholder="—"></div>
+        <div class="gfield"><label>Motorista (se separado)</label><input type="text" data-field="extra" placeholder="nome + telefone"></div>
+        <div class="guide-actions"><button class="g-call" data-save>◈ Salvar</button><span class="g-saved">✓ salvo</span><a class="g-call g-dial" style="display:none" data-dial>☏ Ligar</a></div>
+      </div>
+
+      <div class="guide-card" data-guide="g5">
+        <div class="guide-day">08 Out · quinta</div>
+        <div class="guide-for"><em>Vale Sagrado</em> · Chinchero/Moray/Maras</div>
+        <div class="gfield"><label>Nome / agência</label><input type="text" data-field="name" placeholder="—"></div>
+        <div class="gfield"><label>Telefone / WhatsApp</label><input type="tel" data-field="phone" placeholder="—"></div>
+        <div class="gfield"><label>Motorista (se separado)</label><input type="text" data-field="extra" placeholder="nome + telefone"></div>
+        <div class="guide-actions"><button class="g-call" data-save>◈ Salvar</button><span class="g-saved">✓ salvo</span><a class="g-call g-dial" style="display:none" data-dial>☏ Ligar</a></div>
+      </div>
+
+      <div class="guide-card" data-guide="g6">
+        <div class="guide-day">09 Out · sexta</div>
+        <div class="guide-for">Parque Arqueológico de <em>Ollantaytambo</em></div>
+        <div class="gfield"><label>Nome / agência</label><input type="text" data-field="name" placeholder="—"></div>
+        <div class="gfield"><label>Telefone / WhatsApp</label><input type="tel" data-field="phone" placeholder="—"></div>
+        <div class="guide-actions"><button class="g-call" data-save>◈ Salvar</button><span class="g-saved">✓ salvo</span><a class="g-call g-dial" style="display:none" data-dial>☏ Ligar</a></div>
+      </div>
+
+      <div class="guide-card" data-guide="g7">
+        <div class="guide-day">10 Out · sábado</div>
+        <div class="guide-for"><em>Machu Picchu</em> · guia oficial</div>
+        <div class="gfield"><label>Nome / agência</label><input type="text" data-field="name" placeholder="—"></div>
+        <div class="gfield"><label>Telefone / WhatsApp</label><input type="tel" data-field="phone" placeholder="—"></div>
+        <div class="gfield"><label>Motorista Ollanta→Cusco</label><input type="text" data-field="extra" placeholder="nome + telefone"></div>
+        <div class="guide-actions"><button class="g-call" data-save>◈ Salvar</button><span class="g-saved">✓ salvo</span><a class="g-call g-dial" style="display:none" data-dial>☏ Ligar</a></div>
+      </div>
+    </div>
+
+    <!-- INGRESSOS -->
+    <div class="panel" id="p-ingressos">
+      <div class="lrow" style="border-color:var(--terra-dim)">
+        <div class="lrow-top"><div class="lrow-title" style="color:var(--terra)"><em>Machu Picchu</em></div><div class="lrow-badge" style="color:var(--terra);border-color:var(--terra-dim)">URGENTE</div></div>
+        <div class="lcell" style="margin-bottom:8px"><div class="lv" style="font-size:13px">Circuito 2 cedo (06:00 ou 07:00) · 2A ou 2B indiferente</div></div>
+        <div class="note warn" style="margin:0">
+          <span class="note-h">Comprar em tuboleto.cultura.pe</span>
+          Site oficial de venda (não machupicchu.gob.pe). Outubro é alta temporada, cota limitada por horário. Sem troca de data/titular — comprar só após fechar trem + hotel. <strong>Ainda não comprado.</strong>
+        </div>
+      </div>
+      <div class="lrow">
+        <div class="lrow-top"><div class="lrow-title"><em>BTC Integral</em></div><div class="lrow-badge">S/130 · presencial</div></div>
+        <div class="lcell"><div class="lv" style="font-size:12.5px">Cobre: Sacsayhuamán, Tipón, Pikillaqta, Pisac, Ollantaytambo, Chinchero, Moray. Comprar no 1º dia em Cusco.</div></div>
+      </div>
+      <div class="lrow">
+        <div class="lrow-top"><div class="lrow-title">Ônibus <em>Consettur</em></div><div class="lrow-badge">A. Calientes ↔ MP</div></div>
+        <div class="lcell"><div class="lv" style="font-size:12.5px">Comprar na véspera (dia 09). Vale para qualquer ônibus, ~25–30min. Av. Hermanos Ayar, perto da estação.</div></div>
+      </div>
+      <div class="lrow">
+        <div class="lrow-top"><div class="lrow-title">Catedral de Cusco · MAP</div><div class="lrow-badge">museus</div></div>
+        <div class="lcell"><div class="lv" style="font-size:12.5px">Catedral S/40 (não incluso no BTC). MAP aberto 8h–22h. Huaca Pucllana (Lima) — reserva da visita noturna.</div></div>
+      </div>
+    </div>
+
+    <!-- DESLOCAMENTOS -->
+    <div class="panel" id="p-desloc">
+      <div class="lrow"><div class="lrow-top"><div class="lrow-title">02 · Lima</div></div><div class="lcell"><div class="lv" style="font-size:12.5px">🚖 Táxi/Uber. Orla a pé, Huaca Pucllana ~10min de carro.</div></div></div>
+      <div class="lrow"><div class="lrow-top"><div class="lrow-title">03 · Centro + Barranco</div></div><div class="lcell"><div class="lv" style="font-size:12.5px">🚖 Táxi/Uber p/ Centro e volta. Barranco a pé.</div></div></div>
+      <div class="lrow"><div class="lrow-top"><div class="lrow-title">04 · Lima → Cusco</div></div><div class="lcell"><div class="lv" style="font-size:12.5px">✈ Voo. 🚖 Táxi do aeroporto ao hotel.</div></div></div>
+      <div class="lrow"><div class="lrow-top"><div class="lrow-title">05 · Cusco + Sacsayhuamán</div></div><div class="lcell"><div class="lv" style="font-size:12.5px">○ Centro a pé. 🚖 Táxi só p/ Sacsayhuamán.</div></div></div>
+      <div class="lrow" style="border-left:2px solid var(--blue)"><div class="lrow-top"><div class="lrow-title">06 · Vale Sul</div></div><div class="lcell"><div class="lv hl" style="font-size:12.5px">🚗 Motorista privado o dia todo (com malas).</div></div></div>
+      <div class="lrow" style="border-left:2px solid var(--blue)"><div class="lrow-top"><div class="lrow-title">07 · Pisac</div></div><div class="lcell"><div class="lv hl" style="font-size:12.5px">🚗 Motorista privado · bate-volta.</div></div></div>
+      <div class="lrow" style="border-left:2px solid var(--blue)"><div class="lrow-top"><div class="lrow-title">08 · Vale Sagrado → Ollanta</div></div><div class="lcell"><div class="lv hl" style="font-size:12.5px">🚗 Motorista privado o dia todo (com malas).</div></div></div>
+      <div class="lrow" style="border-left:2px solid var(--blue)"><div class="lrow-top"><div class="lrow-title">09 · Ollantaytambo</div></div><div class="lcell"><div class="lv" style="font-size:12.5px">○ Tudo a pé. 🚆 Trem à noite.</div></div></div>
+      <div class="lrow" style="border-left:2px solid var(--blue)"><div class="lrow-top"><div class="lrow-title">10 · Machu Picchu → Cusco</div></div><div class="lcell"><div class="lv" style="font-size:12.5px">🚌 Consettur + 🚆 trem. 🚗 Motorista privado Ollanta→Cusco.</div></div></div>
+      <div class="lrow"><div class="lrow-top"><div class="lrow-title">11 · Cusco → Lima</div></div><div class="lcell"><div class="lv" style="font-size:12.5px">✈ Voo. 🚖 Táxi/Uber.</div></div></div>
+      <div class="lrow"><div class="lrow-top"><div class="lrow-title">12 · Ilhas Palomino</div></div><div class="lcell"><div class="lv" style="font-size:12.5px">⊛ Tour com traslado incluído. 🚖 Resto Uber.</div></div></div>
+      <div class="lrow"><div class="lrow-top"><div class="lrow-title">13 · Artesanato → voo</div></div><div class="lcell"><div class="lv" style="font-size:12.5px">🚖 Táxi/Uber. Transfer ao aeroporto 19:30–20:00.</div></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== MALA ===================== -->
+<section class="tool alt anchor-pad" id="mala">
+  <div class="tool-wrap">
+    <div class="eyebrow">Antes de fazer as malas</div>
+    <h2 class="sec-title">Mala &amp; <em>clima</em></h2>
+    <p class="sec-intro">Outubro é transição. Manhãs secas, tardes com chance de chuva. Do mar fresco aos Andes gelados — a regra é camadas.</p>
+
+    <div class="climate-grid">
+      <div class="clim">
+        <div class="clim-place"><em>Lima</em> · nível do mar</div>
+        <div class="clim-temp">16–22°C · ameno e úmido</div>
+        <div class="clim-desc">Primavera costeira fresca, céu frequentemente nublado (garúa). Nada de calor forte. Casaco leve à noite.</div>
+      </div>
+      <div class="clim">
+        <div class="clim-place"><em>Cusco</em> &amp; Vale · 3.400m</div>
+        <div class="clim-temp">18–21°C dia · perto de 0°C noite</div>
+        <div class="clim-desc">Manhãs secas e ensolaradas, chuva crescente à tarde/noite. Amplitude térmica enorme — vestir em camadas é essencial.</div>
+      </div>
+      <div class="clim">
+        <div class="clim-place"><em>Machu Picchu</em> · 2.430m</div>
+        <div class="clim-temp">17–19°C · mais úmido</div>
+        <div class="clim-desc">Borda da selva, mais chuva. Manhãs costumam abrir; neblina pode se abrir de repente. Capa de chuva obrigatória.</div>
+      </div>
+      <div class="clim">
+        <div class="clim-place">Estratégia geral</div>
+        <div class="clim-temp">camadas + capa + protetor</div>
+        <div class="clim-desc">A altitude queima muito — protetor solar forte sempre. Tarde pode chover; manhã costuma abrir.</div>
+      </div>
+    </div>
+
+    <div class="pack-grid">
+      <div class="pack-cat">
+        <div class="pack-cat-h">▤ Roupas</div>
+        <ul>
+          <li><b>Sistema de camadas:</b> camisetas + 2ª camada (fleece/moletom) + casaco/corta-vento</li>
+          <li><b>Capa de chuva leve</b> ou jaqueta impermeável (Machu Picchu e Vale)</li>
+          <li>Calças confortáveis para caminhada + 1 calça mais arrumada para jantares</li>
+          <li>Bermuda/roupa leve para Lima e para o barco de Palomino</li>
+          <li>Roupa de banho (Palomino · por baixo da roupa)</li>
+          <li>Camisa/look mais arrumado para bares (Victoria, Lady Bee, Sastrería)</li>
+          <li>Meias extras (frio nas noites de Cusco e madrugada de Machu Picchu)</li>
+          <li>Pijama quente (noites geladas em Cusco/Ollanta)</li>
+        </ul>
+      </div>
+      <div class="pack-cat">
+        <div class="pack-cat-h">◈ Acessórios</div>
+        <ul>
+          <li><b>Tênis de caminhada</b> confortável e já amaciado</li>
+          <li>Chinelo/sandália (hotel e barco)</li>
+          <li><b>Boné/chapéu + óculos de sol</b> (sol forte em altitude)</li>
+          <li>Gorro e luvas finas (madrugada de Machu Picchu, noites de Cusco)</li>
+          <li>Cachecol/buff leve (versátil, pega poeira e frio)</li>
+          <li>Mochila de ataque pequena (≤40×35×20cm para Machu Picchu)</li>
+          <li>Garrafa de água reutilizável</li>
+          <li>Power bank + carregador + adaptador (tomada tipo A/C)</li>
+          <li>Capa de chuva para mochila / saco plástico p/ eletrônicos</li>
+        </ul>
+      </div>
+      <div class="pack-cat">
+        <div class="pack-cat-h">⊕ Necessaire &amp; saúde</div>
+        <ul>
+          <li><b>Protetor solar FPS alto</b> (essencial em altitude) + protetor labial</li>
+          <li>Repelente de insetos (Machu Picchu, borda de selva)</li>
+          <li>Sorojchi pills / remédio para altitude (soroche)</li>
+          <li>Remédio para enjoo (barco de Palomino, estradas do Vale)</li>
+          <li>Analgésico, antialérgico, antidiarreico, curativos</li>
+          <li>Hidratante (ar seco de altitude resseca pele/lábios)</li>
+          <li>Itens de higiene pessoal de sempre</li>
+        </ul>
+      </div>
+      <div class="pack-cat">
+        <div class="pack-cat-h">⊟ Documentos &amp; essenciais</div>
+        <ul>
+          <li><b>Passaporte</b> (Marco: FU337889) — obrigatório em Machu Picchu e no trem</li>
+          <li>Ingressos impressos: Machu Picchu, ônibus, trem</li>
+          <li>Comprovantes de hotel (PINs) e voos</li>
+          <li>Cartões de crédito + algum dinheiro em soles (mercados, táxis, SERNANP)</li>
+          <li>Cópia digital de tudo no celular (funciona offline neste site)</li>
+          <li>eSIM (opcional · Holafly, cupom GIBASANDES)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note">
+      <span class="note-h">Lembrete de bagagem no trem</span>
+      Para Machu Picchu, leva-se só a <strong>mochila</strong> (até 8kg / 100cm lineares). As malas grandes ficam no guarda-volumes gratuito da estação de Ollantaytambo (04:15–21:00).
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PENDÊNCIAS ===================== -->
+<section class="tool anchor-pad" id="pendencias">
+  <div class="tool-wrap">
+    <div class="eyebrow">Antes de viajar · toque para marcar</div>
+    <h2 class="sec-title">Pendências</h2>
+    <p class="sec-intro">O que ainda precisa ser resolvido. As marcações ficam salvas neste aparelho.</p>
+
+    <div style="margin-top:24px">
+
+      <div class="pend urgent" data-pend="voo-remarcar">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Remarcar voo Cusco → Lima para ~21h (dia 11)</div>
+          <div class="pend-desc">Voo atual LA2239 está marcado para 12h10. Gilberto verificar disponibilidade de voo das ~21h em 11/10 e o valor da multa de remarcação (tarifa Economy Light). Só confirmar depois de fechar o novo horário.</div>
+        </div>
+      </div>
+
+      <div class="pend urgent" data-pend="mp">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Comprar ingressos de Machu Picchu</div>
+          <div class="pend-desc">Em <a href="https://tuboleto.cultura.pe" target="_blank">tuboleto.cultura.pe</a> (não machupicchu.gob.pe). Circuito 2 cedo, 2A ou 2B. Outubro é alta temporada — cota limitada por horário, sem troca de data/titular. Comprar só após confirmar trem + hotel. <strong>É a pendência mais urgente.</strong></div>
+        </div>
+      </div>
+
+      <div class="pend urgent" data-pend="hoteis">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Reservar 3 hotéis faltantes</div>
+          <div class="pend-desc">Ollantaytambo (08→09), Cusco (10→11) e Lima (12→13). Depois de reservar, me mande os comprovantes para atualizar o site.</div>
+        </div>
+      </div>
+
+      <div class="pend" data-pend="casadelsol">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Confirmar correção do Casa del Sol</div>
+          <div class="pend-desc">Comprovante atual com check-in 10→11; precisa ser 09→10 (Aguas Calientes). Gilberto está corrigindo — confirmar.</div>
+        </div>
+      </div>
+
+      <div class="pend" data-pend="btc">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Comprar BTC Integral em Cusco</div>
+          <div class="pend-desc">S/130, presencial, no 1º dia em Cusco. Cobre Sacsayhuamán, Tipón, Pikillaqta, Pisac, Ollantaytambo, Chinchero, Moray.</div>
+        </div>
+      </div>
+
+      <div class="pend" data-pend="consettur">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Comprar ônibus Consettur</div>
+          <div class="pend-desc">Aguas Calientes ↔ Machu Picchu. Comprar na véspera (dia 09), online ou no ponto.</div>
+        </div>
+      </div>
+
+      <div class="pend" data-pend="g-lima">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Guia · Lima Centro Histórico (03 Out)</div>
+          <div class="pend-desc">Guia privado para San Francisco, catacumbas, catedral e ruas coloniais. ~3–4h.</div>
+        </div>
+      </div>
+
+      <div class="pend" data-pend="g-cusco">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Guia · Cusco histórico + Sacsayhuamán (05 Out)</div>
+          <div class="pend-desc">Plaza, Qorikancha, San Blas, Mercado de San Pedro, MAP e fortaleza.</div>
+        </div>
+      </div>
+
+      <div class="pend" data-pend="g-valesul">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Guia + Motorista · Vale Sul (06 Out)</div>
+          <div class="pend-desc">Tipón e Pikillaqta. Motorista privado o dia todo (inclui malas para troca de hotel).</div>
+        </div>
+      </div>
+
+      <div class="pend" data-pend="g-pisac">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Guia + Motorista · Pisac (07 Out)</div>
+          <div class="pend-desc">Sítio arqueológico com guia. Motorista privado bate-volta.</div>
+        </div>
+      </div>
+
+      <div class="pend" data-pend="g-vale">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Guia + Motorista · Vale Sagrado (08 Out)</div>
+          <div class="pend-desc">Chinchero, Moray, Maras → Ollantaytambo com malas. Decidir centro têxtil com o guia.</div>
+        </div>
+      </div>
+
+      <div class="pend" data-pend="g-ollanta">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Guia · Ollantaytambo (09 Out)</div>
+          <div class="pend-desc">Parque Arqueológico com guia. Pinkuylluna sem guia (trilha livre).</div>
+        </div>
+      </div>
+
+      <div class="pend" data-pend="g-machu">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Guia oficial + Motorista · Machu Picchu (10 Out)</div>
+          <div class="pend-desc">Guia oficial privado para Circuito 2. Motorista privado Ollanta→Cusco após o trem.</div>
+        </div>
+      </div>
+
+      <div class="pend" data-pend="textil">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Decidir centro têxtil em Chinchero</div>
+          <div class="pend-desc">Opções sérias: CTTC, Qori Puskay, Tika, Centro Textil Acllas. Escolher antes ou pedir ao guia para levar a um de procedência real.</div>
+        </div>
+      </div>
+
+      <div class="pend" data-pend="earlyin">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Negociar early check-in (Lima, dia 02)</div>
+          <div class="pend-desc">Chegada 06:55, quarto só às 15:00. Pedir early check-in pago ao Jose Antonio Deluxe com antecedência. Senão, deixar malas e sair.</div>
+        </div>
+      </div>
+
+      <div class="pend" data-pend="lateout">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Negociar late check-out / day-use (Lima, dia 13)</div>
+          <div class="pend-desc">Voo às 23:15 — não ficar sem quarto. Pedir late check-out ou day-use pago, junto com a reserva 12→13.</div>
+        </div>
+      </div>
+
+      <div class="pend" data-pend="huaca">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Reservar visita noturna da Huaca Pucllana</div>
+          <div class="pend-desc">Dia 02. Visita noturna por reserva (qua–dom). Reservar com antecedência + jantar no restaurante.</div>
+        </div>
+      </div>
+
+      <div class="pend" data-pend="esim">
+        <div class="pend-check"></div>
+        <div class="pend-body">
+          <div class="pend-title">Comprar eSIM (opcional)</div>
+          <div class="pend-desc">Holafly, cupom GIBASANDES. Ativar via QR ao chegar. Comprar antes facilita.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- LOGISTICA-SECTION-AQUI -->
+
+<button class="fab hidden" id="fabToday"><span class="fab-ico">◉</span><span id="fabLabel">Hoje</span></button>
+
+<footer>
+  <div class="foot-mark">Buen viaje.</div>
+  <div class="foot-sub">Marco &amp; Gilberto · Peru · Outubro 2026</div>
+  <div class="offline-note">✦ Este guia funciona <b>offline</b> depois de aberto uma vez. Marcações e contatos ficam salvos neste aparelho.</div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  // ---- Mapa de datas da viagem para o botão "Hoje" ----
+  var TRIP = {
+    '2026-10-02':'#lima-1','2026-10-03':'#dia-03','2026-10-04':'#cusco',
+    '2026-10-05':'#dia-05','2026-10-06':'#valesul','2026-10-07':'#pisac',
+    '2026-10-08':'#vale','2026-10-09':'#ollanta','2026-10-10':'#machu',
+    '2026-10-11':'#lima-2','2026-10-12':'#dia-12','2026-10-13':'#dia-13','2026-10-14':'#dia-14'
+  };
+
+  // ---- Abas expansíveis (acordeão) dentro dos cards ----
+  document.querySelectorAll('.acc-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var body = btn.nextElementSibling;
+      var open = btn.classList.toggle('open');
+      if(open){ body.style.maxHeight = body.scrollHeight + 'px'; }
+      else { body.style.maxHeight = '0px'; }
+    });
+  });
+
+  // ---- Sub-abas da logística ----
+  document.querySelectorAll('.subtab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var target = tab.getAttribute('data-panel');
+      var container = tab.closest('.tool-wrap');
+      container.querySelectorAll('.subtab').forEach(function(t){ t.classList.remove('active'); });
+      container.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      var panel = document.getElementById(target);
+      if(panel){ panel.classList.add('active'); }
+    });
+  });
+
+  // ---- Campos editáveis de guias (localStorage) ----
+  var STORE = 'peru2026_guides';
+  function loadGuides(){
+    try { return JSON.parse(localStorage.getItem(STORE) || '{}'); }
+    catch(e){ return {}; }
+  }
+  function saveGuides(data){
+    try { localStorage.setItem(STORE, JSON.stringify(data)); } catch(e){}
+  }
+  var guidesData = loadGuides();
+
+  document.querySelectorAll('.guide-card').forEach(function(card){
+    var id = card.getAttribute('data-guide');
+    var saved = guidesData[id] || {};
+    // preencher valores salvos
+    card.querySelectorAll('input[data-field]').forEach(function(inp){
+      var f = inp.getAttribute('data-field');
+      if(saved[f]){ inp.value = saved[f]; }
+    });
+    // botão de ligar, se já tem telefone
+    var dial = card.querySelector('[data-dial]');
+    function refreshDial(){
+      var phoneInp = card.querySelector('input[data-field="phone"]');
+      var phone = phoneInp ? phoneInp.value.trim() : '';
+      if(phone && dial){
+        dial.style.display = 'inline-flex';
+        dial.setAttribute('href','tel:' + phone.replace(/[^0-9+]/g,''));
+      } else if(dial){
+        dial.style.display = 'none';
+      }
+    }
+    refreshDial();
+    // salvar
+    var btn = card.querySelector('[data-save]');
+    if(btn){
+      btn.addEventListener('click', function(){
+        var obj = {};
+        card.querySelectorAll('input[data-field]').forEach(function(inp){
+          obj[inp.getAttribute('data-field')] = inp.value.trim();
+        });
+        guidesData[id] = obj;
+        saveGuides(guidesData);
+        var savedTag = card.querySelector('.g-saved');
+        if(savedTag){
+          savedTag.classList.add('show');
+          setTimeout(function(){ savedTag.classList.remove('show'); }, 2200);
+        }
+        refreshDial();
+      });
+    }
+  });
+
+  // ---- Checkboxes de pendências (localStorage) ----
+  var PEND_STORE = 'peru2026_pend';
+  function loadPend(){
+    try { return JSON.parse(localStorage.getItem(PEND_STORE) || '{}'); }
+    catch(e){ return {}; }
+  }
+  function savePend(d){
+    try { localStorage.setItem(PEND_STORE, JSON.stringify(d)); } catch(e){}
+  }
+  var pendData = loadPend();
+
+  document.querySelectorAll('.pend').forEach(function(row){
+    var id = row.getAttribute('data-pend');
+    var check = row.querySelector('.pend-check');
+    if(pendData[id]){
+      check.classList.add('done');
+      row.classList.add('done-row');
+    }
+    check.addEventListener('click', function(){
+      var done = check.classList.toggle('done');
+      row.classList.toggle('done-row', done);
+      pendData[id] = done;
+      savePend(pendData);
+    });
+  });
+
+  // ---- Botão "Hoje" ----
+  var fab = document.getElementById('fabToday');
+  var fabLabel = document.getElementById('fabLabel');
+
+  function pad(n){ return n < 10 ? '0'+n : ''+n; }
+  function todayKey(){
+    var d = new Date();
+    return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate());
+  }
+
+  var key = todayKey();
+  var target = TRIP[key];
+  if(target){
+    fabLabel.textContent = 'Hoje';
+  } else {
+    // fora do período da viagem → leva ao resumo
+    fabLabel.textContent = 'Roteiro';
+    target = '#resumo';
+  }
+  fab.addEventListener('click', function(){
+    var el = document.querySelector(target);
+    if(el){ el.scrollIntoView({ behavior:'smooth', block:'start' }); }
+  });
+
+  // botão Hoje da nav
+  var navTodayBtn = document.getElementById('navToday');
+  if(navTodayBtn){
+    navTodayBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      var el = document.querySelector(target);
+      if(el){ el.scrollIntoView({ behavior:'smooth', block:'start' }); }
+    });
+  }
+
+  // mostrar FAB depois de rolar um pouco; esconder perto do topo
+  function toggleFab(){
+    if(window.scrollY > 600){ fab.classList.remove('hidden'); }
+    else { fab.classList.add('hidden'); }
+  }
+  window.addEventListener('scroll', toggleFab, { passive:true });
+  toggleFab();
+
+  // ---- Scrollspy da nav ----
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+  var sections = navLinks.map(function(a){
+    return document.querySelector(a.getAttribute('href'));
+  });
+  function spy(){
+    var pos = window.scrollY + 120;
+    var current = -1;
+    for(var i=0;i<sections.length;i++){
+      if(sections[i] && sections[i].offsetTop <= pos){ current = i; }
+    }
+    navLinks.forEach(function(a){ a.classList.remove('active'); });
+    if(current >= 0){
+      navLinks[current].classList.add('active');
+      // manter o link ativo visível na nav horizontal
+      var link = navLinks[current];
+      var navScroll = document.querySelector('.nav-scroll');
+      if(navScroll){
+        var lr = link.getBoundingClientRect();
+        var nr = navScroll.getBoundingClientRect();
+        if(lr.right > nr.right || lr.left < nr.left){
+          navScroll.scrollLeft += (lr.left - nr.left) - 40;
+        }
+      }
+    }
+  }
+  window.addEventListener('scroll', spy, { passive:true });
+  spy();
+
+  // ---- Modo offline (service worker via cache) ----
+  if('serviceWorker' in navigator){
+    var swCode = [
+      "var C='peru2026-v1';",
+      "self.addEventListener('install',function(e){self.skipWaiting();});",
+      "self.addEventListener('activate',function(e){e.waitUntil(self.clients.claim());});",
+      "self.addEventListener('fetch',function(e){",
+      " if(e.request.method!=='GET')return;",
+      " e.respondWith(",
+      "  caches.open(C).then(function(cache){",
+      "   return cache.match(e.request).then(function(hit){",
+      "    var net=fetch(e.request).then(function(res){",
+      "     try{cache.put(e.request,res.clone());}catch(x){}",
+      "     return res;",
+      "    }).catch(function(){return hit;});",
+      "    return hit||net;",
+      "   });",
+      "  })",
+      " );",
+      "});"
+    ].join('\n');
+    try {
+      var blob = new Blob([swCode], { type:'text/javascript' });
+      var url = URL.createObjectURL(blob);
+      navigator.serviceWorker.register(url).catch(function(){});
+    } catch(e){}
+  }
+
+})();
+</script>
+
+</body>
+</html>
