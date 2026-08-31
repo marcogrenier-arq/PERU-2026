@@ -3,6 +3,13 @@ name: TESTE - Monitor Machu Picchu
 on:
   workflow_dispatch:
 
+  schedule:
+    - cron: '0 7,12,15,17,19 1-7 9 *'
+      timezone: "America/Lima"
+
+    - cron: '30 9,13,21 1-7 9 *'
+      timezone: "America/Lima"
+
 permissions:
   contents: read
 
