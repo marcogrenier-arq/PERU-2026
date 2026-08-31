@@ -1,0 +1,339 @@
+name: TESTE - Monitor Machu Picchu
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  consultar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Consultar TuBoleto
+        shell: bash
+        run: |
+          python <<'PY'
+          import urllib.request
+          import urllib.error
+          import json
+          import hmac
+          import hashlib
+          import base64
+          import re
+
+          from datetime import datetime, timedelta
+          from zoneinfo import ZoneInfo
+
+          API = "https://api-tuboleto.cultura.pe"
+          LUGAR = "llaqta_machupicchu"
+          PUNTO = 5
+
+          SECURITY_VALUE = "5t4jPtv4LpmGgWU7ZYk8FhZf5LNTpk"
+
+          HEADERS = {
+              "Accept": "application/json, text/plain, */*",
+              "User-Agent": "Mozilla/5.0",
+              "Origin": "https://tuboleto.cultura.pe",
+              "Referer": "https://tuboleto.cultura.pe/"
+          }
+
+
+          def request_json(url, method="GET", payload=None):
+              headers = dict(HEADERS)
+
+              data = None
+
+              if payload is not None:
+                  data = json.dumps(payload).encode("utf-8")
+                  headers["Content-Type"] = "application/json"
+
+              req = urllib.request.Request(
+                  url,
+                  data=data,
+                  headers=headers,
+                  method=method
+              )
+
+              try:
+                  with urllib.request.urlopen(req, timeout=30) as response:
+                      raw = response.read().decode("utf-8")
+                      return json.loads(raw)
+
+              except urllib.error.HTTPError as e:
+                  body = e.read().decode("utf-8", errors="replace")
+                  raise RuntimeError(
+                      f"HTTP {e.code} em {url}: {body}"
+                  )
+
+              except Exception as e:
+                  raise RuntimeError(
+                      f"Erro consultando {url}: {e}"
+                  )
+
+
+          def gerar_codigo():
+              r = request_json(
+                  f"{API}/comunes/tiempo-servidor"
+              )
+
+              timestamp = str(r["tiempoServidor"])
+
+              mensagem = (
+                  f"{SECURITY_VALUE}:{timestamp}"
+              ).encode("utf-8")
+
+              assinatura = hmac.new(
+                  SECURITY_VALUE.encode("utf-8"),
+                  mensagem,
+                  hashlib.sha256
+              ).digest()
+
+              codigo = base64.b64encode(
+                  assinatura
+              ).decode("ascii")
+
+              return codigo, timestamp
+
+
+          def consultar_disponibilidade(data):
+              codigo, timestamp = gerar_codigo()
+
+              payload = {
+                  "lugar": LUGAR,
+                  "fecha": data,
+                  "code": codigo,
+                  "punto": PUNTO,
+                  "timestamp": timestamp
+              }
+
+              return request_json(
+                  f"{API}/comunes/disponibilidad-actual",
+                  method="POST",
+                  payload=payload
+              )
+
+
+          def achatar_rotas(obj):
+              resultado = []
+
+              def caminhar(x, contexto=None):
+                  if contexto is None:
+                      contexto = {}
+
+                  if isinstance(x, list):
+                      for item in x:
+                          caminhar(item, contexto)
+                      return
+
+                  if not isinstance(x, dict):
+                      return
+
+                  atual = dict(contexto)
+
+                  for k, v in x.items():
+                      if k != "rutas" and not isinstance(v, (list, dict)):
+                          atual[k] = v
+
+                  if isinstance(x.get("rutas"), list):
+                      for rota in x["rutas"]:
+                          if isinstance(rota, dict):
+                              combinado = dict(atual)
+                              combinado.update(rota)
+                              caminhar(combinado, atual)
+                      return
+
+                  if "ncupoActual" in x:
+                      resultado.append(atual)
+                      return
+
+                  for v in x.values():
+                      if isinstance(v, (list, dict)):
+                          caminhar(v, atual)
+
+              caminhar(obj)
+
+              return resultado
+
+
+          def esgotado(rotas):
+              if not rotas:
+                  raise RuntimeError(
+                      "API não retornou nenhuma rota."
+                  )
+
+              for rota in rotas:
+                  if "ncupoActual" not in rota:
+                      return False
+
+                  try:
+                      atual = int(rota["ncupoActual"])
+                  except Exception:
+                      return False
+
+                  if atual != 0:
+                      return False
+
+              return True
+
+
+          def codigo_rota(rota):
+              texto = str(rota.get("ruta", ""))
+
+              m = re.search(
+                  r"Ruta\s+([123]-[A-Z])",
+                  texto,
+                  flags=re.IGNORECASE
+              )
+
+              if not m:
+                  return None
+
+              return m.group(1).upper()
+
+
+          agora = datetime.now(
+              ZoneInfo("America/Lima")
+          )
+
+          hoje = agora.date()
+
+          consultas = {}
+
+          # D+1
+          data1 = hoje + timedelta(days=1)
+
+          bruto1 = consultar_disponibilidade(
+              data1.isoformat()
+          )
+
+          rotas1 = achatar_rotas(bruto1)
+
+          consultas[1] = {
+              "data": data1,
+              "rotas": rotas1,
+              "esgotado": esgotado(rotas1)
+          }
+
+          # D+2 só é considerado aberto
+          # se D+1 estiver totalmente esgotado.
+          if consultas[1]["esgotado"]:
+
+              data2 = hoje + timedelta(days=2)
+
+              bruto2 = consultar_disponibilidade(
+                  data2.isoformat()
+              )
+
+              rotas2 = achatar_rotas(bruto2)
+
+              consultas[2] = {
+                  "data": data2,
+                  "rotas": rotas2,
+                  "esgotado": esgotado(rotas2)
+              }
+
+          # D+3 só é considerado aberto
+          # se D+2 também estiver totalmente esgotado.
+          if (
+              2 in consultas
+              and consultas[2]["esgotado"]
+          ):
+
+              data3 = hoje + timedelta(days=3)
+
+              bruto3 = consultar_disponibilidade(
+                  data3.isoformat()
+              )
+
+              rotas3 = achatar_rotas(bruto3)
+
+              consultas[3] = {
+                  "data": data3,
+                  "rotas": rotas3,
+                  "esgotado": esgotado(rotas3)
+              }
+
+
+          if 3 in consultas:
+              ativo = consultas[3]
+          elif 2 in consultas:
+              ativo = consultas[2]
+          else:
+              ativo = consultas[1]
+
+
+          mapa = {}
+
+          for rota in ativo["rotas"]:
+              cod = codigo_rota(rota)
+
+              if cod:
+                  mapa[cod] = rota
+
+
+          def valor(codigo):
+              rota = mapa.get(codigo)
+
+              if rota is None:
+                  return "?"
+
+              return str(rota.get(
+                  "ncupoActual",
+                  "?"
+              ))
+
+
+          if consultas[1]["esgotado"]:
+              d1 = "ESGOTADO"
+          else:
+              d1 = consultas[1]["data"].isoformat()
+
+
+          d2 = "sim" if 2 in consultas else "não"
+          d3 = "sim" if 3 in consultas else "não"
+
+
+          linha = (
+              f"{agora:%Y-%m-%d %H:%M} Peru"
+              f" | vende: D+1={d1};"
+              f" D+2={d2};"
+              f" D+3={d3}"
+              f" | 2-A={valor('2-A')};"
+              f" 2-B={valor('2-B')};"
+              f" 3-A={valor('3-A')};"
+              f" 3-B={valor('3-B')};"
+              f" 3-C={valor('3-C')};"
+              f" 3-D={valor('3-D')}"
+              f" | obs: -"
+          )
+
+
+          print()
+          print("======================================")
+          print("RESULTADO DO MONITOR")
+          print("======================================")
+          print(linha)
+          print()
+
+
+          print("DATA ATIVA:", ativo["data"].isoformat())
+          print()
+
+          print("ROTAS RECEBIDAS DA API:")
+
+          for rota in ativo["rotas"]:
+              print(
+                  rota.get("ruta", "?"),
+                  "| ncupo:",
+                  rota.get("ncupo", "?"),
+                  "| ncupoActual:",
+                  rota.get("ncupoActual", "?")
+              )
+
+          print()
+          print("======================================")
+
+          PY
+          
